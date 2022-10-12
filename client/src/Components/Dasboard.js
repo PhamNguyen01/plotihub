@@ -48,11 +48,11 @@ export default function BasicButtons() {
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText>
-                              <p>Select Tenant</p>  <input placeholder='Select Tenant'></input>
-                              <p>Paid Amount</p>  <input placeholder='Enter Paid Amount e.g 10000'></input>
-                              <p>Select Tenant</p>  <input placeholder='Select Tenant'></input>
-                              <p>Payment Type (optional)</p>  <input placeholder='Select Tenant'></input>
-                              <p>Description (optional)</p>  <input placeholder='Select Tenant'></input>
+                              <p>Select Tenant</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
+                              <p>Paid Amount</p>  <input className='payment-reminders-input' placeholder='Enter Paid Amount e.g 10000'></input>
+                              <p>Select Tenant</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
+                              <p>Payment Type (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
+                              <p>Description (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
                                 {/* <Button variant="outlined">Add PAyment</Button> */}
                             </DialogContentText>
                         </DialogContent>

@@ -29,6 +29,9 @@ import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 import InsertChartIcon from '@mui/icons-material/InsertChart';
 import MailIcon from '@mui/icons-material/Mail';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { Link } from 'react-router-dom';
+import BasicButtons from './Dasboard';
+
 
 const drawerWidth = 242;
 const options = [
@@ -59,6 +62,7 @@ export default function PermanentDrawerLeft() {
                     <Typography variant="h6" noWrap component="div">
                         Dashboard
                     </Typography>
+                    {/* <BasicButtons /> */}
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -87,7 +91,7 @@ export default function PermanentDrawerLeft() {
                     {/* To do ends  */}
                     <Divider />
 
-                    <ListItemButton>
+                    <ListItemButton to="/dashboard">
                         <ListItemIcon>
                             <DashboardIcon />
                         </ListItemIcon>
@@ -105,13 +109,16 @@ export default function PermanentDrawerLeft() {
                     </ListItemButton>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItemButton sx={{ pl: 4 }}>
+                            <ListItemButton to="/invoices" exact sx={{ pl: 4 }}>
+
+                           
+        
+          
                                 {/* <ListItemIcon>
                                     <StarBorder />
                                 </ListItemIcon> */}
                                 <ListItemText primary="Invoices" />
                             </ListItemButton>
-
                             <ListItemButton sx={{ pl: 4 }}>
                                 {/* <ListItemIcon>
                                     <StarBorder />
