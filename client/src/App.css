@@ -112,7 +112,7 @@
   padding-right: 17vh;
 }
 
-.invoice-buttons>button {
+.invoice-buttons > button {
   margin-right: 3vh;
   margin-top: -3vh;
 
@@ -154,4 +154,58 @@
   float: right;
   width: 120vh;
   padding-right: 20vh;
+}
+
+/* Payment CSS */
+.payment-buttons {
+  float: right;
+  padding-right: 17vh;
+}
+
+.payment-buttons>button {
+  margin-right: 3vh;
+  margin-top: -3vh;
+
+}
+
+.payment-left-inputs {
+  width: 30vh;
+  height: 4vh;
+  margin-bottom: 10px;
+
+}
+
+.payment-left-filters {
+  margin-left: 30vh;
+  padding-top: 6vh;
+
+
+}
+
+.payment-right-side {
+  float: right;
+  padding-right: 20vh;
+}
+
+.payment-summarry-card {
+  background-color: #FFFFFF;
+  border: 1px solid rgb(223, 219, 219);
+  box-shadow: 0px 12px 16px -4px rgba(12, 26, 36, 0.04);
+  border-radius: 3px;
+  width: 100vh;
+  height: 23.1vh;
+  margin-top: -24vh;
+}
+.payment-card-details{
+  padding-left: 10vh;
+  padding-top: 1vh;
+}
+.payment-table{
+  float: right;
+  width: 120vh;
+  padding-right: 20vh;
+}
+
+.record-payment-button{
+  padding-right: vh;
 }

@@ -22,8 +22,7 @@ function createData(date, invoice_id, tenant, item, property, status, amount_to_
     createData('7/3/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,   ),
     createData('7/4/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,   ),
     createData('7/5/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,   ),
-    createData('7/6/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,   ),
-
+    createData('7/6/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,   )
   ];
   
 

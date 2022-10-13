@@ -119,14 +119,14 @@ export default function PermanentDrawerLeft() {
                                 </ListItemIcon> */}
                                 <ListItemText primary="Invoices" />
                             </ListItemButton>
-                            <ListItemButton sx={{ pl: 4 }}>
+                            <ListItemButton to="/payment" exact sx={{ pl: 4 }}>
                                 {/* <ListItemIcon>
                                     <StarBorder />
                                 </ListItemIcon> */}
                                 <ListItemText primary="Payments" />
                             </ListItemButton>
 
-                            <ListItemButton sx={{ pl: 4 }}>
+                            <ListItemButton to="/expenses" sx={{ pl: 4 }}>
                                 {/* <ListItemIcon>
                                     <StarBorder />
                                 </ListItemIcon> */}

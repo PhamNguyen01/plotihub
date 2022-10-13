@@ -34,7 +34,7 @@ export default function BasicButtons() {
                 <ResponsiveDialog />
 
                 <div>
-                    <Button className='button' variant="outlined" onClick={handleClickOpen}>
+                    <Button className='button' variant="outlined" >
                         Record Payment
                     </Button>
                     <Dialog
