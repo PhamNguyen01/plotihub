@@ -137,7 +137,7 @@ export default function PermanentDrawerLeft() {
                     </Collapse>
                     <Divider />
 
-                    <ListItemButton>
+                    <ListItemButton to="/tenant">
                         <ListItemIcon>
                             <PersonIcon />
                         </ListItemIcon>
