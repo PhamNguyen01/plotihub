@@ -6,6 +6,7 @@ import Invoices from './Components/Invoices'
 import Payment from './Components/Payment'
 import Expenses from './Components/Expenses'
 import Tenant from './Components/Tenants'
+import Property from './Components/Property'
 import BasicButtons from './Components/Dasboard'
 // import PermanentDrawerLeft from './Components/Drawer'
 
@@ -18,6 +19,8 @@ function Handler() {
                 <Route path="/payment" element={<Payment />} />
                 <Route path="/expenses" element={<Expenses />} />
                 <Route path="/tenant" element={<Tenant />} />
+                <Route path="/property" element={<Property />} />
+
 
             </Routes>
         </div>

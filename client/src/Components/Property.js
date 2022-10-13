@@ -21,18 +21,18 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-function createData(tenant_name, property_name, unit_name, phone_number, deposit, balance, account_number) {
-    return { tenant_name, property_name, unit_name, phone_number, deposit, balance, account_number };
+function createData(property_name, number_of_units, city, water_rate, electricity_rate, mpesa_paybill) {
+    return { property_name, number_of_units, city, water_rate, electricity_rate, mpesa_paybill };
 }
 
 const rows = [
-    createData('Carl Agesa', 'Magiq Square', 'block D', '07212531733', 5000, 5000, 212123),
-    createData('David Park', 'Magiq Square', 'block D', '07212531733', 5000, 5000, 212123)
+    createData('Tassia Hill', '10', 'Nairobi', '300', 'Token', 2323434),
+    createData('Tassia Estate', '10', 'Nairobi', '300', 'Token', 2443434)
 
 ];
 
 
-export default function Tenants() {
+export default function Property() {
 
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
@@ -52,10 +52,8 @@ export default function Tenants() {
                 <PermanentDrawerLeft />
                 <div className='payment-buttons'>
 
-                    <Button variant="outlined" onClick={handleClickOpen}>Add Tenant</Button>
-                    <Button variant="outlined"> Send Message </Button>
-                    <Button variant="outlined"> Send Reminders</Button>
-                    <Button variant="outlined"> Shift Tenants</Button>
+                    <Button variant="outlined" onClick={handleClickOpen}>Add Property</Button>
+                    <Button variant="outlined"> Add Unit </Button>
                     <Dialog
                         fullScreen={fullScreen}
                         open={open}
@@ -88,19 +86,7 @@ export default function Tenants() {
 
                     </Dialog>
 
-
-
-                    {/* <Button variant="outlined"> Bulk Upload Payment </Button> */}
-                    {/* <Button variant="outlined"> Generate Rent payment</Button> */}
                 </div>
-
-                {/* <div className='invoice-buttons'>
-                    <Button variant="outlined"> Add Tenant </Button>
-                    <Button variant="outlined"> Send Message </Button>
-                    <Button variant="outlined"> Send Reminders</Button>
-                    <Button variant="outlined"> Shift Tenants</Button>
-
-                </div> */}
 
                 <div className='invoice-left-filters'>
                     <input className='invoice-left-inputs' placeholder='Type to search'></input>
@@ -116,9 +102,9 @@ export default function Tenants() {
                         <h4>Summary</h4>
                         <Divider />
 
-                        <p>Total</p>
-                        <h3>0.00</h3>
-                        <p>(KSH)</p>
+                        <p>Total Units</p>
+                        <h3>0</h3>
+                   
                     </div>
 
                 </div>
@@ -131,13 +117,12 @@ export default function Tenants() {
                         <TableHead>
                             <TableRow>
                                 {/* <TableCell>Date</TableCell> */}
-                                <TableCell align="right">Tenant Name</TableCell>
                                 <TableCell align="right">Property Name</TableCell>
-                                <TableCell align="right">Unit ID/Name</TableCell>
-                                <TableCell align="right">Phone Number</TableCell>
-                                <TableCell align="right">Deposit</TableCell>
-                                <TableCell align="right">Balance</TableCell>
-                                <TableCell align="right">Account Number</TableCell>
+                                <TableCell align="right">Number of Units</TableCell>
+                                <TableCell align="right">City</TableCell>
+                                <TableCell align="right">Water Rate (KSH)</TableCell>
+                                <TableCell align="right">Elictricity Rate (KSH)</TableCell>
+                                <TableCell align="right">MPESA Paybill</TableCell>
                                 <TableCell align="right">Action</TableCell>
 
 
@@ -149,16 +134,15 @@ export default function Tenants() {
                                     key={row.name}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell component="th" scope="row">
+                                    {/* <TableCell component="th" scope="row">
                                         {row.date}
-                                    </TableCell>
-                                    <TableCell align="right">{row.tenant_name}</TableCell>
+                                    </TableCell> */}
                                     <TableCell align="right">{row.property_name}</TableCell>
-                                    <TableCell align="right">{row.unit_name}</TableCell>
-                                    <TableCell align="right">{row.pone_name}</TableCell>
-                                    <TableCell align="right">{row.deposit}</TableCell>
-                                    <TableCell align="right">{row.balance}</TableCell>
-                                    <TableCell align="right">{row.account_number}</TableCell>
+                                    <TableCell align="right">{row.number_of_units}</TableCell>
+                                    <TableCell align="right">{row.city}</TableCell>
+                                    <TableCell align="right">{row.water_rate}</TableCell>
+                                    <TableCell align="right">{row.electricity_rate}</TableCell>
+                                    <TableCell align="right">{row.mpesa_paybill}</TableCell>
                                     <TableCell align="right"><Button variant='outlined'>Download</Button></TableCell>
 
 

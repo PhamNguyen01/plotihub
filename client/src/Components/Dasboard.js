@@ -77,7 +77,6 @@ export default function BasicButtons() {
                 <div className='cards'>
                     <div className='card-details'>
                         <div className='card-info'>
-                            <WifiOutlinedIcon sx={{ fontSize: 60 }} />
                             <p>Unpaid Tenant Balance</p>
                             <h3>10.00 KSH</h3>
                             <p>Total</p>
@@ -86,7 +85,6 @@ export default function BasicButtons() {
                     </div >
                     <div className='card-details'>
                         <div className='card-info'>
-                            <SignalWifiBadOutlinedIcon sx={{ fontSize: 60 }} />
                             <p>Payments</p>
                             <h3>0 KSH</h3>
                             <p>October</p>
@@ -95,7 +93,6 @@ export default function BasicButtons() {
                     </div >
                     <div className='card-details'>
                         <div className='card-info'>
-                            <AccountBalanceWalletIcon sx={{ fontSize: 60 }} />
                             <p>Total Vacancies</p>
                             <h3> 0</h3>
                             <p>0 Occupied</p>
@@ -105,7 +102,6 @@ export default function BasicButtons() {
 
                     <div className='card-details'>
                         <div className='card-info'>
-                            <AccountBalanceIcon sx={{ fontSize: 60 }} />
                             <p>Billing Address</p>
                             <h3>Bank Acc</h3>
                         </div>

@@ -155,7 +155,7 @@ export default function PermanentDrawerLeft() {
                     </ListItemButton>
                     <Collapse in={opened} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItemButton sx={{ pl: 4 }}>
+                            <ListItemButton to="/property" sx={{ pl: 4 }}>
                                 {/* <ListItemIcon>
                                     <StarBorder />
                                 </ListItemIcon> */}
