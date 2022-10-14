@@ -1,17 +1,11 @@
 import * as React from 'react';
 import '../App.css'
-import ListSubheader from '@mui/material/ListSubheader';
-// import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
-import SendIcon from '@mui/icons-material/Send';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import StarBorder from '@mui/icons-material/StarBorder';
 import 'react-dropdown/style.css';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -29,8 +23,7 @@ import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 import InsertChartIcon from '@mui/icons-material/InsertChart';
 import MailIcon from '@mui/icons-material/Mail';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { Link } from 'react-router-dom';
-import BasicButtons from './Dasboard';
+
 
 
 const drawerWidth = 242;
@@ -110,26 +103,15 @@ export default function PermanentDrawerLeft() {
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItemButton to="/invoices" exact sx={{ pl: 4 }}>
-
-                           
-        
-          
-                                {/* <ListItemIcon>
-                                    <StarBorder />
-                                </ListItemIcon> */}
                                 <ListItemText primary="Invoices" />
                             </ListItemButton>
                             <ListItemButton to="/payment" exact sx={{ pl: 4 }}>
-                                {/* <ListItemIcon>
-                                    <StarBorder />
-                                </ListItemIcon> */}
+
                                 <ListItemText primary="Payments" />
                             </ListItemButton>
 
                             <ListItemButton to="/expenses" sx={{ pl: 4 }}>
-                                {/* <ListItemIcon>
-                                    <StarBorder />
-                                </ListItemIcon> */}
+
                                 <ListItemText primary="Expenses" />
                             </ListItemButton>
 
@@ -156,30 +138,21 @@ export default function PermanentDrawerLeft() {
                     <Collapse in={opened} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItemButton to="/property" sx={{ pl: 4 }}>
-                                {/* <ListItemIcon>
-                                    <StarBorder />
-                                </ListItemIcon> */}
                                 <ListItemText primary="Property/Unit" />
                             </ListItemButton>
 
                             <ListItemButton to="/utilities" sx={{ pl: 4 }}>
-                                {/* <ListItemIcon>
-                                    <StarBorder />
-                                </ListItemIcon> */}
                                 <ListItemText primary="Utilities" />
                             </ListItemButton>
 
                             <ListItemButton to="/maintenance" sx={{ pl: 4 }}>
-                                {/* <ListItemIcon>
-                                    <StarBorder />
-                                </ListItemIcon> */}
                                 <ListItemText primary="Maintenance" />
                             </ListItemButton>
                         </List>
                     </Collapse>
                     <Divider />
 
-<ListItemButton>
+                    <ListItemButton>
                         <ListItemIcon>
                             <InsertChartIcon />
                         </ListItemIcon>
@@ -200,19 +173,6 @@ export default function PermanentDrawerLeft() {
                         <ListItemText primary="Settings" />
                     </ListItemButton>
                 </List>
-                {/* <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem key={text} disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                                </ListItemIcon>
-                                
-                                <ListItemText primary={text} />
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
-                </List> */}
                 <Divider />
 
             </Drawer>

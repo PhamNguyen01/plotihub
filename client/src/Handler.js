@@ -1,4 +1,3 @@
-import Dashboard from '@mui/icons-material/Dashboard'
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import App from './App'
@@ -9,8 +8,6 @@ import Tenant from './Components/Tenants'
 import Property from './Components/Property'
 import Utilties from './Components/Utilties'
 import Maintenance from './Components/Maintenance'
-import BasicButtons from './Components/Dasboard'
-// import PermanentDrawerLeft from './Components/Drawer'
 
 function Handler() {
     return (

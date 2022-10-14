@@ -21,6 +21,12 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
 function createData(tenant_name, property_name, unit_name, phone_number, deposit, balance, account_number) {
     return { tenant_name, property_name, unit_name, phone_number, deposit, balance, account_number };
 }
@@ -46,6 +52,14 @@ export default function Tenants() {
         setOpen(false);
     };
 
+   
+        const [age, setAge] = React.useState('');
+      
+        const handleChange = (event) => {
+          setAge(event.target.value);
+        };
+
+
     return (
         <div>
             <div className='invoice-left-side'>
@@ -67,16 +81,53 @@ export default function Tenants() {
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText>
-                                <p>Select Tenant</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
-                                <p>Paid Amount</p>  <input className='payment-reminders-input' placeholder='Enter Paid Amount e.g 10000'></input>
-                                <p>Select Tenant</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
-                                <p>Payment Type (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
-                                <p>Description (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
-                                {/* <Button variant="outlined">Add PAyment</Button> */}
+                                <p>Select Property</p>
+                                
+                                <Box sx={{ minWidth: 120 }}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">Name</InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={age}
+                                            label="Age"
+                                            onChange={handleChange}
+                                        >
+                                            <MenuItem value={10}>Tassia Hill</MenuItem>
+                                            <MenuItem value={20}>Tassi Estate</MenuItem>
+                                            <MenuItem value={30}>Magiq Square</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Box>
+
+                                <p>Select Unit</p>
+                                <Box sx={{ minWidth: 120 }}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">Unit</InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={age}
+                                            label="Age"
+                                            onChange={handleChange}
+                                        >
+                                            <MenuItem value={10}>Ten</MenuItem>
+                                            <MenuItem value={20}>Twenty</MenuItem>
+                                            <MenuItem value={30}>Thirty</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Box> 
+
+
+
+                                <p>First Name</p>  <input className='payment-reminders-input' placeholder='First Name'></input>
+                                <p>Last Name</p>  <input className='payment-reminders-input' placeholder='Last Name'></input>
+                                <p>Phone Number</p>  <input className='payment-reminders-input' placeholder='Phone Number'></input>
+                                <p>Deposit</p>  <input className='payment-reminders-input' placeholder='Phone Number'></input>
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                            <Button variant="outlined" onClick={handleClose} autoFocus>Add Payment</Button>
+                            <Button variant="outlined" onClick={handleClose} autoFocus>Add Tenant</Button>
                         </DialogActions>
 
                     </Dialog>
@@ -135,7 +186,7 @@ export default function Tenants() {
                                     <TableCell align="right">{row.account_number}</TableCell>
                                     <TableCell align="right"><Button variant='outlined'>Download</Button></TableCell>
 
-                                    
+
                                 </TableRow>
                             ))}
                         </TableBody>

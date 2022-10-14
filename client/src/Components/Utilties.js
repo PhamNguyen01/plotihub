@@ -2,8 +2,6 @@ import * as React from 'react';
 import '../App.css'
 import PermanentDrawerLeft from './Drawer';
 import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
-
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,8 +9,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
-
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -21,8 +17,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-function createData(date, property_name, unit_name, item, previous_reading, current_reading,invoice) {
-    return { date, property_name, unit_name, item, previous_reading, current_reading,invoice };
+function createData(date, property_name, unit_name, item, previous_reading, current_reading, invoice) {
+    return { date, property_name, unit_name, item, previous_reading, current_reading, invoice };
 }
 
 const rows = [
