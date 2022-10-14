@@ -19,7 +19,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-
+import ServerRequestDatePicker from './Date';
 function createData(date, payment_id, tenant, item, property, status, amount_to_pay) {
     return { date, payment_id, tenant, item, property, status, amount_to_pay };
   }
@@ -68,11 +68,13 @@ export default function Payment() {
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText>
-                              <p>Select Tenant</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
+                              <p>Select Tenant</p> 
+                              <input className='payment-reminders-input' placeholder='Select Property'></input> <br></br>
+                               <input className='payment-reminders-input' placeholder='Select Tenant'></input>
                               <p>Paid Amount</p>  <input className='payment-reminders-input' placeholder='Enter Paid Amount e.g 10000'></input>
-                              <p>Select Tenant</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
-                              <p>Payment Type (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
-                              <p>Description (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
+                              <p>Payment Date</p>  < ServerRequestDatePicker/>
+                              <p>Status</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
+                              {/* <p>Description (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input> */}
                                 {/* <Button variant="outlined">Add PAyment</Button> */}
                             </DialogContentText>
                         </DialogContent>

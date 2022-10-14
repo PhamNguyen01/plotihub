@@ -162,14 +162,14 @@ export default function PermanentDrawerLeft() {
                                 <ListItemText primary="Property/Unit" />
                             </ListItemButton>
 
-                            <ListItemButton sx={{ pl: 4 }}>
+                            <ListItemButton to="/utilities" sx={{ pl: 4 }}>
                                 {/* <ListItemIcon>
                                     <StarBorder />
                                 </ListItemIcon> */}
                                 <ListItemText primary="Utilities" />
                             </ListItemButton>
 
-                            <ListItemButton sx={{ pl: 4 }}>
+                            <ListItemButton to="/maintenance" sx={{ pl: 4 }}>
                                 {/* <ListItemIcon>
                                     <StarBorder />
                                 </ListItemIcon> */}

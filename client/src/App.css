@@ -209,3 +209,10 @@
 .record-payment-button{
   padding-right: vh;
 }
+
+.utilities-table{
+  float: right;
+  width: 120vh;
+  padding-right: 20vh;
+  margin-top: -22.5vh;
+}

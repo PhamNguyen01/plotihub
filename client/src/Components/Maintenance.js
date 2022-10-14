@@ -20,21 +20,18 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-// Date
-import ServerRequestDatePicker from './Date';
-
-function createData(date, property, category,  status, amount_to_pay) {
-    return { date, property, category, status, amount_to_pay };
+function createData(summary, property_name, unit_name, status, category, date) {
+    return { summary, property_name, unit_name, status, category, date };
   }
   
   const rows = [
-    createData('7/1/2022', 'Magiq Square',  "Unknown", 'Paid', 10000,  ),
-    createData('7/2/2022', 'Magiq Square',  "Unknown", 'Paid', 10000,  ),
-    createData('7/3/2022', 'Magiq Square',  "Unknown", 'Paid', 10000,  )
+    createData('Clogged toilet', 'Magiq Square', 'Block D', 'Pending', 'Household', '12/10/2022'),
+    createData('Broken windows', 'Magiq Square', 'Block D', 'Fixed', 'Household', '12/10/2022'),
+
   ];
   
 
-export default function Expenses() {
+export default function Maintenance() {
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -55,7 +52,7 @@ export default function Expenses() {
                 <div className='payment-buttons'>
                
                     <Button variant="outlined" onClick={handleClickOpen}>
-                        Record Expenses
+                        Add Maintenance
                     </Button>
                     <Dialog
                         fullScreen={fullScreen}
@@ -64,37 +61,25 @@ export default function Expenses() {
                         aria-labelledby="responsive-dialog-title"
                     >
                         <DialogTitle id="responsive-dialog-title">
-                            {"Send Balance Reminders"}
+                            {"Maintenance Form"}
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText>
                               <p>Select Property</p>  <input className='payment-reminders-input' placeholder='Select Property'></input>
-                              <p>Select Units</p>  <input className='payment-reminders-input' placeholder='Select Unit'></input>
-                              <p>Amount</p>  <input className='payment-reminders-input' placeholder='example: 10000'></input>
-                              <p>Payment method</p>  <input className='payment-reminders-input' placeholder='Payment method'></input>
-                              <p>Expense Category</p>  <input className='payment-reminders-input' placeholder='Expense Category'></input>
-                              <p>Expense Date</p> <ServerRequestDatePicker/>
-
-                                {/* <Button variant="outlined">Add PAyment</Button> */}
+                              <p>Select Unit</p>  <input className='payment-reminders-input' placeholder='Select Unit'></input>
+                              <p>Status</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
+                              <p>Category</p>  <input className='payment-reminders-input'></input>
+                              <p>Short Summary</p>  <input className='payment-reminders-input' placeholder='Short summary of the problem'></input>
+                              <p>Description (Optional)</p>  <input className='payment-reminders-input' placeholder='Detailed description of the problem'></input>
+                               {/* <Button variant="outlined">Add PAyment</Button> */}
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                        <Button variant="outlined" onClick={handleClose} autoFocus>Add Payment</Button>
+                        <Button variant="outlined" onClick={handleClose} autoFocus>Add</Button>
 
-                            {/* <Button autoFocus onClick={handleClose}>
-                                Disagree
-                            </Button>
-                            <Button onClick={handleClose} autoFocus>
-                                Agree
-                            </Button> */}
                         </DialogActions>
                     </Dialog>
-               
-
-
-                    {/* <Button variant="outlined"> Bulk Upload Payment </Button> */}
-                    {/* <Button variant="outlined"> Generate Rent payment</Button> */}
-                </div>
+               </div>
 
                 <div className='payment-left-filters'>
                     <input className='payment-left-inputs' placeholder='Type to search'></input>
@@ -110,9 +95,8 @@ export default function Expenses() {
                         <h4>Summary</h4>
                         <Divider />
 
-                        <p>Total</p>
+                        <p>Open Requests</p>
                         <h3>0.00</h3>
-                        <p>(KSH)</p>
                     </div>
 
                 </div>
@@ -125,11 +109,14 @@ export default function Expenses() {
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
-            <TableCell align="right">Property (Unit)</TableCell>
-            <TableCell align="right">Category</TableCell>
+            <TableCell align="right">Short summarry</TableCell>
+            <TableCell align="right">Property Name</TableCell>
+            <TableCell align="right">Unit Name</TableCell>
             <TableCell align="right">Status</TableCell>
-            <TableCell align="right">Amount</TableCell>
+            <TableCell align="right">Category</TableCell>
+            <TableCell align="right">Date</TableCell>
             <TableCell align="right">Action</TableCell>
+
 
 
           </TableRow>
@@ -143,10 +130,13 @@ export default function Expenses() {
               <TableCell component="th" scope="row">
                 {row.date}
               </TableCell>
-              <TableCell align="right">{row.property}</TableCell>
-              <TableCell align="right">{row.category}</TableCell>
+              <TableCell align="right">{row.summary}</TableCell>
+              <TableCell align="right">{row.property_name}</TableCell>
+              <TableCell align="right">{row.unit_name}</TableCell>
               <TableCell align="right">{row.status}</TableCell>
-              <TableCell align="right">{row.amount_to_pay}</TableCell>
+              <TableCell align="right">{row.category}</TableCell>
+              <TableCell align="right">{row.date}</TableCell>
+
               <TableCell align="right"><Button variant='outlined'>Download</Button></TableCell>
               
             </TableRow>
