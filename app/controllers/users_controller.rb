@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-    # rescue_from ActiveRecord::RecordNotFound, with: :not_found_response
-    # rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_response
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found_response
+    rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_response
     
     def index
         render json: User.all, status: :ok
@@ -18,23 +18,28 @@ class UsersController < ApplicationController
 
     def update
         user= User.find_by!(id: params[:id])
-        user.update(description: params[:description])
+        user.update(username: params[:username], password_digest: params[:password_digest])
         render json: user, status: :accepted
     end
 
+    def destroy
+        user = User.find_by!(id: params[:id])
+        user.destroy
+        render json:{}, status: :no_content
+    end
 
 
     private
 
     def user_params
-        params.permit :user_name, :password_digest
+        params.permit :username, :password_digest
     end
 
     def not_found_response
         render json: {error: "User was not found"}, status: :not_found
     end
 
-    # def unprocessable_entity_response(invalid)
-    #     render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
-    # end
+    def unprocessable_entity_response(invalid)
+        render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
+    end
 end
