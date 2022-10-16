@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../App.css'
 import PermanentDrawerLeft from './Drawer';
 import Button from '@mui/material/Button';
@@ -46,6 +46,24 @@ export default function Payment() {
     const handleClose = () => {
         setOpen(false);
     };
+
+    ///Fetching Properties
+const [payment, setPayment] = useState([]);
+
+
+useEffect(() => {
+    fetch("http://localhost:3000/payments")
+        .then((response) => response.json())
+        .then((data) => {
+            setPayment(data);
+            console.log(data)
+
+        }
+        )
+    // .then((data) => {
+    //     console.log(data)
+    // })
+}, []);
     return (
         
         <div>
@@ -137,20 +155,20 @@ export default function Payment() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {payment.map((item) => (
             <TableRow
-              key={row.name}
+              key={item.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.date}
+                {item.date}
               </TableCell>
-              <TableCell align="right">{row.payment_id}</TableCell>
-              <TableCell align="right">{row.tenant}</TableCell>
-              <TableCell align="right">{row.item}</TableCell>
-              <TableCell align="right">{row.property}</TableCell>
-              <TableCell align="right">{row.status}</TableCell>
-              <TableCell align="right">{row.amount_to_pay}</TableCell>
+              <TableCell align="right">{item.payment_id}</TableCell>
+              <TableCell align="right">{item.tenant}</TableCell>
+              <TableCell align="right">{item.item}</TableCell>
+              <TableCell align="right">{item.property}</TableCell>
+              <TableCell align="right">{item.status}</TableCell>
+              <TableCell align="right">{item.amount_to_pay}</TableCell>
 
               <Button variant='outlined'>Download</Button>
             </TableRow>

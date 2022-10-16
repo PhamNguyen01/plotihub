@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../App.css'
 import PermanentDrawerLeft from './Drawer';
 import Button from '@mui/material/Button';
@@ -38,6 +38,7 @@ const rows = [
 ];
 
 
+
 export default function Tenants() {
 
     const [open, setOpen] = React.useState(false);
@@ -52,12 +53,29 @@ export default function Tenants() {
         setOpen(false);
     };
 
-   
-        const [age, setAge] = React.useState('');
-      
-        const handleChange = (event) => {
-          setAge(event.target.value);
-        };
+
+    const [age, setAge] = React.useState('');
+
+    const handleChange = (event) => {
+        setAge(event.target.value);
+    };
+
+    const [tenant, setTenant] = useState([]);
+
+
+    useEffect(() => {
+        fetch("http://localhost:3000/tenants")
+            .then((response) => response.json())
+            .then((data) => {
+                setTenant(data);
+                console.log(data)
+
+            }
+            )
+        // .then((data) => {
+        //     console.log(data)
+        // })
+    }, []);
 
 
     return (
@@ -82,7 +100,7 @@ export default function Tenants() {
                         <DialogContent>
                             <DialogContentText>
                                 <p>Select Property</p>
-                                
+
                                 <Box sx={{ minWidth: 120 }}>
                                     <FormControl fullWidth>
                                         <InputLabel id="demo-simple-select-label">Name</InputLabel>
@@ -116,7 +134,7 @@ export default function Tenants() {
                                             <MenuItem value={30}>Thirty</MenuItem>
                                         </Select>
                                     </FormControl>
-                                </Box> 
+                                </Box>
 
 
 
@@ -172,18 +190,18 @@ export default function Tenants() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row) => (
+                            {tenant.map((item) => (
                                 <TableRow
-                                    key={row.name}
+                                    key={tenant.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell align="right">{row.tenant_name}</TableCell>
-                                    <TableCell align="right">{row.property_name}</TableCell>
-                                    <TableCell align="right">{row.unit_name}</TableCell>
-                                    <TableCell align="right">{row.phone_number}</TableCell>
-                                    <TableCell align="right">{row.deposit}</TableCell>
-                                    <TableCell align="right">{row.balance}</TableCell>
-                                    <TableCell align="right">{row.account_number}</TableCell>
+                                    <TableCell align="right">{item.tenant_name}</TableCell>
+                                    <TableCell align="right">{item.property_name}</TableCell>
+                                    <TableCell align="right">{item.unit_name}</TableCell>
+                                    <TableCell align="right">{item.phone_number}</TableCell>
+                                    <TableCell align="right">{item.deposit}</TableCell>
+                                    <TableCell align="right">{item.balance}</TableCell>
+                                    <TableCell align="right">{item.account_number}</TableCell>
                                     <TableCell align="right"><Button variant='outlined'>Download</Button></TableCell>
 
 

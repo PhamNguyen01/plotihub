@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../App.css'
 import PermanentDrawerLeft from './Drawer';
 import Button from '@mui/material/Button';
@@ -45,6 +45,24 @@ export default function Property() {
     const handleClose = () => {
         setOpen(false);
     };
+///Fetching Properties
+const [property, setProperty] = useState([]);
+
+
+useEffect(() => {
+    fetch("http://localhost:3000/properties")
+        .then((response) => response.json())
+        .then((data) => {
+            setProperty(data);
+            console.log(data)
+
+        }
+        )
+    // .then((data) => {
+    //     console.log(data)
+    // })
+}, []);
+
 
     return (
         <div>
@@ -129,20 +147,20 @@ export default function Property() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row) => (
+                            {property.map((item) => (
                                 <TableRow
-                                    key={row.name}
+                                    key={item.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     {/* <TableCell component="th" scope="row">
                                         {row.date}
                                     </TableCell> */}
-                                    <TableCell align="right">{row.property_name}</TableCell>
-                                    <TableCell align="right">{row.number_of_units}</TableCell>
-                                    <TableCell align="right">{row.city}</TableCell>
-                                    <TableCell align="right">{row.water_rate}</TableCell>
-                                    <TableCell align="right">{row.electricity_rate}</TableCell>
-                                    <TableCell align="right">{row.mpesa_paybill}</TableCell>
+                                    <TableCell align="right">{item.property_name}</TableCell>
+                                    <TableCell align="right">{item.number_of_units}</TableCell>
+                                    <TableCell align="right">{item.city}</TableCell>
+                                    <TableCell align="right">{item.water_rate}</TableCell>
+                                    <TableCell align="right">{item.electricity_rate}</TableCell>
+                                    <TableCell align="right">{item.mpesa_paybill}</TableCell>
                                     <TableCell align="right"><Button variant='outlined'>Download</Button></TableCell>
 
 
