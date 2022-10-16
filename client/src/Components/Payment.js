@@ -20,8 +20,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import ServerRequestDatePicker from './Date';
-function createData(date, payment_id, tenant, item, property, status, amount_to_pay) {
-    return { date, payment_id, tenant, item, property, status, amount_to_pay };
+function createData(date, payment_number, tenant_name, item, unit_name, status, amount_to_pay) {
+    return { date, payment_number, tenant_name, item, unit_name, status, amount_to_pay };
   }
   
   const rows = [
@@ -163,10 +163,10 @@ useEffect(() => {
               <TableCell component="th" scope="row">
                 {item.date}
               </TableCell>
-              <TableCell align="right">{item.payment_id}</TableCell>
+              <TableCell align="right">{item.payment_number}</TableCell>
               <TableCell align="right">{item.tenant}</TableCell>
               <TableCell align="right">{item.item}</TableCell>
-              <TableCell align="right">{item.property}</TableCell>
+              <TableCell align="right">{item.unit_name}</TableCell>
               <TableCell align="right">{item.status}</TableCell>
               <TableCell align="right">{item.amount_to_pay}</TableCell>
 

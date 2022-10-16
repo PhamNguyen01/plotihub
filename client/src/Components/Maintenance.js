@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../App.css'
 import PermanentDrawerLeft from './Drawer';
 import Button from '@mui/material/Button';
@@ -43,6 +43,25 @@ export default function Maintenance() {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const [maintenance, setMaintenance] = useState([]);
+
+
+useEffect(() => {
+    fetch("http://localhost:3000/maintenances")
+        .then((response) => response.json())
+        .then((data) => {
+            setMaintenance(data);
+            console.log(data)
+
+        }
+        )
+    // .then((data) => {
+    //     console.log(data)
+    // })
+}, []);
+
+
     return (
         
         <div>
@@ -114,7 +133,6 @@ export default function Maintenance() {
             <TableCell align="right">Unit Name</TableCell>
             <TableCell align="right">Status</TableCell>
             <TableCell align="right">Category</TableCell>
-            <TableCell align="right">Date</TableCell>
             <TableCell align="right">Action</TableCell>
 
 
@@ -122,20 +140,19 @@ export default function Maintenance() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {maintenance.map((item) => (
             <TableRow
-              key={row.name}
+              key={item.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.date}
+                {item.date}
               </TableCell>
-              <TableCell align="right">{row.summary}</TableCell>
-              <TableCell align="right">{row.property_name}</TableCell>
-              <TableCell align="right">{row.unit_name}</TableCell>
-              <TableCell align="right">{row.status}</TableCell>
-              <TableCell align="right">{row.category}</TableCell>
-              <TableCell align="right">{row.date}</TableCell>
+              <TableCell align="right">{item.short_summary}</TableCell>
+              <TableCell align="right">{item.property_name}</TableCell>
+              <TableCell align="right">{item.unit_name}</TableCell>
+              <TableCell align="right">{item.status}</TableCell>
+              <TableCell align="right">{item.category}</TableCell>
 
               <TableCell align="right"><Button variant='outlined'>Download</Button></TableCell>
               

@@ -22,10 +22,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_16_075853) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.string "tenant_name"
-    t.integer "paid_amount"
     t.datetime "date"
+    t.integer "payment_number"
+    t.string "tenant_name"
+    t.string "item"
+    t.string "unit_name"
     t.string "status"
+    t.integer "amount_to_pay"
   end
 
   create_table "properties", force: :cascade do |t|

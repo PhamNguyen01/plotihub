@@ -78,6 +78,26 @@ export default function Tenants() {
     }, []);
 
 
+    const [property, setProperty] = useState([]);
+
+
+useEffect(() => {
+    fetch("http://localhost:3000/properties")
+        .then((response) => response.json())
+        .then((data) => {
+            setProperty(data);
+            console.log(data)
+
+        }
+        )
+    // .then((data) => {
+    //     console.log(data)
+    // })
+}, []);
+
+
+const [selects, setSelects]= useState();
+
     return (
         <div>
             <div className='invoice-left-side'>
@@ -99,27 +119,42 @@ export default function Tenants() {
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText>
+                                <div>
+                                    {/* <h1>{selects}</h1> */}
+                                    <select value={selects} onChange={e=>setSelects(e.target.value)}>
+                                    {property.map((item) => (
+ 
+                                        <option>{item.property_name}</option>
+                                        // <option>Mango</option>
+                                        // <option>Orange</option>
+                                        ))}
+
+                                    </select>
+                                </div>
                                 <p>Select Property</p>
 
-                                <Box sx={{ minWidth: 120 }}>
+                                {/* <Box sx={{ minWidth: 120 }}>
                                     <FormControl fullWidth>
                                         <InputLabel id="demo-simple-select-label">Name</InputLabel>
                                         <Select
                                             labelId="demo-simple-select-label"
                                             id="demo-simple-select"
-                                            value={age}
-                                            label="Age"
-                                            onChange={handleChange}
+                                            value={setSelects} 
+                                            // value={age}
+                                            // label="Age"
+                                            
                                         >
-                                            <MenuItem value={10}>Tassia Hill</MenuItem>
-                                            <MenuItem value={20}>Tassi Estate</MenuItem>
-                                            <MenuItem value={30}>Magiq Square</MenuItem>
+                                                                        {property.map((item) => (
+
+                                            <MenuItem onChange={e=>setSelects(e.target.value)} value={selects}>{item.property_name}</MenuItem>
+                                            ))}
+                                        
                                         </Select>
                                     </FormControl>
-                                </Box>
+                                </Box> */}
 
                                 <p>Select Unit</p>
-                                <Box sx={{ minWidth: 120 }}>
+                                {/* <Box sx={{ minWidth: 120 }}>
                                     <FormControl fullWidth>
                                         <InputLabel id="demo-simple-select-label">Unit</InputLabel>
                                         <Select
@@ -134,7 +169,7 @@ export default function Tenants() {
                                             <MenuItem value={30}>Thirty</MenuItem>
                                         </Select>
                                     </FormControl>
-                                </Box>
+                                </Box> */}
 
 
 

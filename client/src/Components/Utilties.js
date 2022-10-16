@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../App.css'
 import PermanentDrawerLeft from './Drawer';
 import Button from '@mui/material/Button';
@@ -42,6 +42,26 @@ export default function Utilties() {
     const handleClose = () => {
         setOpen(false);
     };
+
+
+        ///Fetching Properties
+const [utility, setUtility] = useState([]);
+
+
+useEffect(() => {
+    fetch("http://localhost:3000/utilities")
+        .then((response) => response.json())
+        .then((data) => {
+            setUtility(data);
+            console.log(data)
+
+        }
+        )
+    // .then((data) => {
+    //     console.log(data)
+    // })
+}, []);
+
 
     return (
         <div>
@@ -104,21 +124,21 @@ export default function Utilties() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row) => (
+                            {utility.map((item) => (
                                 <TableRow
-                                    key={row.name}
+                                    key={item.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell component="th" scope="row">
-                                        {row.date}
+                                        {item.date}
                                     </TableCell>
                                     {/* <TableCell align="right">{row.tenant_name}</TableCell> */}
-                                    <TableCell align="right">{row.property_name}</TableCell>
-                                    <TableCell align="right">{row.unit_name}</TableCell>
-                                    <TableCell align="right">{row.item}</TableCell>
-                                    <TableCell align="right">{row.previous_reading}</TableCell>
-                                    <TableCell align="right">{row.current_reading}</TableCell>
-                                    <TableCell align="right">{row.invoice}</TableCell>
+                                    <TableCell align="right">{item.property_name}</TableCell>
+                                    <TableCell align="right">{item.unit_name}</TableCell>
+                                    <TableCell align="right">{item.utility_item}</TableCell>
+                                    <TableCell align="right">{item.previous_reading}</TableCell>
+                                    <TableCell align="right">{item.current_reading}</TableCell>
+                                    <TableCell align="right">{item.invoice}</TableCell>
                                     <TableCell align="right"><Button variant='outlined'>Download</Button></TableCell>
 
 
