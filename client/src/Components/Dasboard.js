@@ -2,10 +2,6 @@ import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import '../App.css'
-import WifiOutlinedIcon from '@mui/icons-material/WifiOutlined';
-import SignalWifiBadOutlinedIcon from '@mui/icons-material/SignalWifiBadOutlined';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import ResponsiveDialog from './Modal';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -14,6 +10,13 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
 
 export default function BasicButtons() {
     const [open, setOpen] = React.useState(false);
@@ -27,10 +30,18 @@ export default function BasicButtons() {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const [age, setAge] = React.useState('');
+
+    const handleChange = (event) => {
+        setAge(event.target.value);
+    };
+
+
     return (
         <div>
- 
-               <Stack className='buttons' spacing={2} direction="row">
+
+            <Stack className='buttons' spacing={2} direction="row">
                 <ResponsiveDialog />
 
                 <div>
@@ -48,16 +59,16 @@ export default function BasicButtons() {
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText>
-                              <p>Select Tenant</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
-                              <p>Paid Amount</p>  <input className='payment-reminders-input' placeholder='Enter Paid Amount e.g 10000'></input>
-                              <p>Select Tenant</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
-                              <p>Payment Type (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
-                              <p>Description (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
+                                <p>Select Tenant</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
+                                <p>Paid Amount</p>  <input className='payment-reminders-input' placeholder='Enter Paid Amount e.g 10000'></input>
+                                <p>Select Tenant</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
+                                <p>Payment Type (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
+                                <p>Description (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
                                 {/* <Button variant="outlined">Add PAyment</Button> */}
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                        <Button variant="outlined" onClick={handleClose} autoFocus>Add Payment</Button>
+                            <Button variant="outlined" onClick={handleClose} autoFocus>Add Payment</Button>
 
                             {/* <Button autoFocus onClick={handleClose}>
                                 Disagree
@@ -67,10 +78,28 @@ export default function BasicButtons() {
                             </Button> */}
                         </DialogActions>
                     </Dialog>
+
                 </div>
                 {/* <Button onClick={handleClickOpen} className='button' variant="outlined">Record Payment</Button> */}
 
                 <Button className='button' variant="outlined">Add Utilities</Button>
+
+                <Box sx={{ minWidth: 120 }}>
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Name</InputLabel>
+                        <Select className='dropdown'
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={age}
+                            label="Age"
+                            onChange={handleChange}
+                        >
+                            <MenuItem value={10}>Tassia Hill</MenuItem>
+                            <MenuItem value={20}>Tassi Estate</MenuItem>
+                            <MenuItem value={30}>Magiq Square</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
             </Stack>
 
             <div className='card'>

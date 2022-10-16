@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  property_name: MyString
+  unit_name: MyString
+  number_of_units: 1
+  city: MyString
+  water_rate: 1
+  electricity_rate: 1
+  mpesa_paybill: 1
+
+two:
+  property_name: MyString
+  unit_name: MyString
+  number_of_units: 1
+  city: MyString
+  water_rate: 1
+  electricity_rate: 1
+  mpesa_paybill: 1
