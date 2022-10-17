@@ -30,6 +30,7 @@ export default function LoginForm({ onLogin }) {
                 r.json().then((err) => setErrors(err.errors));
             }
         });
+        
     }
 
 
@@ -52,8 +53,11 @@ export default function LoginForm({ onLogin }) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <Button className='login-btn' type="submit">
+                <Button  className='login-btn' type="submit" >
+                    <Link to="/dashboard">
                     {isLoading ? "Loading..." : "Login"}
+
+                    </Link>
                 </Button>
                 {/* {errors.map((err) => (
                     <Error key={err}>{err}</Error>
