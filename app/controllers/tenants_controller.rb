@@ -3,7 +3,7 @@ class TenantsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_response
     
     def index
-        render json: Tenant.all, status: :ok
+        render json: Tenant.all, include:[:property], status: :ok
     end
 
     def show

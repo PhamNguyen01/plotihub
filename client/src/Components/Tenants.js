@@ -236,8 +236,8 @@ export default function Tenants() {
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell align="right">{item.tenant_name}</TableCell>
-                                    <TableCell align="right">{item.property_id}</TableCell>
-                                    <TableCell align="right">{item.unit_id}</TableCell>
+                                    <TableCell align="right">{item.property.property_name}</TableCell>
+                                    <TableCell align="right">{item.property.unit_name}</TableCell>
                                     <TableCell align="right">{item.phone_number}</TableCell>
                                     <TableCell align="right">{item.deposit}</TableCell>
                                     <TableCell align="right">{item.balance}</TableCell>
