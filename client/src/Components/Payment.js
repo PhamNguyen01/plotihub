@@ -22,17 +22,17 @@ import { useTheme } from '@mui/material/styles';
 import ServerRequestDatePicker from './Date';
 function createData(date, payment_number, tenant_name, item, unit_name, status, amount_to_pay) {
     return { date, payment_number, tenant_name, item, unit_name, status, amount_to_pay };
-  }
-  
-  const rows = [
-    createData('7/1/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,   ),
-    createData('7/2/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,   ),
-    createData('7/3/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,   ),
-    createData('7/4/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,   ),
-    createData('7/5/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,   ),
-    createData('7/6/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,   )
-  ];
-  
+}
+
+const rows = [
+    createData('7/1/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,),
+    createData('7/2/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,),
+    createData('7/3/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,),
+    createData('7/4/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,),
+    createData('7/5/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,),
+    createData('7/6/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,)
+];
+
 
 export default function Payment() {
     const [open, setOpen] = React.useState(false);
@@ -48,30 +48,35 @@ export default function Payment() {
     };
 
     ///Fetching Properties
-const [payment, setPayment] = useState([]);
+    const [payment, setPayment] = useState([]);
 
 
-useEffect(() => {
-    fetch("http://localhost:3000/payments")
-        .then((response) => response.json())
-        .then((data) => {
-            setPayment(data);
-            console.log(data)
+    useEffect(() => {
+        fetch("http://localhost:3000/payments")
+            .then((response) => response.json())
+            .then((data) => {
+                setPayment(data);
+                console.log(data)
 
-        }
-        )
-    // .then((data) => {
-    //     console.log(data)
-    // })
-}, []);
+            }
+            )
+        // .then((data) => {
+        //     console.log(data)
+        // })
+    }, []);
+
+    const [properties, setProperties] = useState();
+    const [tenants, setTenants] = useState();
+
+
     return (
-        
+
         <div>
             <div className='payment-left-side'>
                 <PermanentDrawerLeft />
 
                 <div className='payment-buttons'>
-               
+
                     <Button variant="outlined" onClick={handleClickOpen}>
                         Record Payment
                     </Button>
@@ -86,18 +91,42 @@ useEffect(() => {
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText>
-                              <p>Select Tenant</p> 
-                              <input className='payment-reminders-input' placeholder='Select Property'></input> <br></br>
-                               <input className='payment-reminders-input' placeholder='Select Tenant'></input>
-                              <p>Paid Amount</p>  <input className='payment-reminders-input' placeholder='Enter Paid Amount e.g 10000'></input>
-                              <p>Payment Date</p>  < ServerRequestDatePicker/>
-                              <p>Status</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
-                              {/* <p>Description (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input> */}
+                                <p>Select Unit</p>
+                                <select className='property-dropdown' value={properties} onChange={e => setProperties(e.target.value)}>
+                                    {payment.map((item) => (
+
+                                        <option>{item.unit_name}</option>
+
+                                    ))}
+
+                                </select> 
+                                <p>Select Tenant</p>
+
+                                <select className='property-dropdown' value={tenants} onChange={e => setTenants(e.target.value)}>
+                                    {payment.map((item) => (
+
+                                        <option>{item.tenant_name}</option>
+
+                                    ))}
+
+                                </select>
+                                <p>Paid Amount</p>  <input className='payment-reminders-input' placeholder='Enter Paid Amount e.g 10000'></input>
+                                <p>Payment Date</p>  < ServerRequestDatePicker />
+                                <p>Status</p> 
+
+                                <select className='property-dropdown' value={tenants} onChange={e => setTenants(e.target.value)}>
+                                    {payment.map((item) => (
+
+                                        <option>{item.status}</option>
+
+                                    ))}
+                                    </select>
+                                {/* <p>Description (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input> */}
                                 {/* <Button variant="outlined">Add PAyment</Button> */}
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                        <Button variant="outlined" onClick={handleClose} autoFocus>Add Payment</Button>
+                            <Button variant="outlined" onClick={handleClose} autoFocus>Add Paymentr</Button>
 
                             {/* <Button autoFocus onClick={handleClose}>
                                 Disagree
@@ -107,7 +136,7 @@ useEffect(() => {
                             </Button> */}
                         </DialogActions>
                     </Dialog>
-               
+
 
 
                     <Button variant="outlined"> Bulk Upload Payment </Button>
@@ -138,44 +167,44 @@ useEffect(() => {
             </div>
 
             <div className='payment-table'>
-            <TableContainer component={Paper}>
-      <Table  aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell align="right">Payment ID/Number</TableCell>
-            <TableCell align="right">Tenant</TableCell>
-            <TableCell align="right">Item</TableCell>
-            <TableCell align="right">Property (Unit)</TableCell>
-            <TableCell align="right">Status</TableCell>
-            <TableCell align="right">Amount to pay (kshs)</TableCell>
-            <TableCell align="right">Action</TableCell>
+                <TableContainer component={Paper}>
+                    <Table aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Date</TableCell>
+                                <TableCell align="right">Payment ID/Number</TableCell>
+                                <TableCell align="right">Tenant</TableCell>
+                                <TableCell align="right">Item</TableCell>
+                                <TableCell align="right">Property (Unit)</TableCell>
+                                <TableCell align="right">Status</TableCell>
+                                <TableCell align="right">Amount to pay (kshs)</TableCell>
+                                <TableCell align="right">Action</TableCell>
 
 
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {payment.map((item) => (
-            <TableRow
-              key={item.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {item.date}
-              </TableCell>
-              <TableCell align="right">{item.payment_number}</TableCell>
-              <TableCell align="right">{item.tenant}</TableCell>
-              <TableCell align="right">{item.item}</TableCell>
-              <TableCell align="right">{item.unit_name}</TableCell>
-              <TableCell align="right">{item.status}</TableCell>
-              <TableCell align="right">{item.amount_to_pay}</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {payment.map((item) => (
+                                <TableRow
+                                    key={item.id}
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                    <TableCell component="th" scope="row">
+                                        {item.date}
+                                    </TableCell>
+                                    <TableCell align="right">{item.payment_number}</TableCell>
+                                    <TableCell align="right">{item.tenant_name}</TableCell>
+                                    <TableCell align="right">{item.item}</TableCell>
+                                    <TableCell align="right">{item.unit_name}</TableCell>
+                                    <TableCell align="right">{item.status}</TableCell>
+                                    <TableCell align="right">{item.paid_amount}</TableCell>
 
-              <Button variant='outlined'>Download</Button>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+                                    <Button variant='outlined'>Download</Button>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </div>
 
         </div>

@@ -7,7 +7,7 @@ class CreatePayments < ActiveRecord::Migration[7.0]
       t.string :item
       t.string :unit_name
       t.string :status
-      t.integer :amount_to_pay
+      t.integer :paid_amount
 
     end
   end

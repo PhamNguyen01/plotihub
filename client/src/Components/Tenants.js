@@ -54,12 +54,6 @@ export default function Tenants() {
     };
 
 
-    const [age, setAge] = React.useState('');
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    };
-
     const [tenant, setTenant] = useState([]);
 
 
@@ -81,22 +75,24 @@ export default function Tenants() {
     const [property, setProperty] = useState([]);
 
 
-useEffect(() => {
-    fetch("http://localhost:3000/properties")
-        .then((response) => response.json())
-        .then((data) => {
-            setProperty(data);
-            console.log(data)
+    useEffect(() => {
+        fetch("http://localhost:3000/properties")
+            .then((response) => response.json())
+            .then((data) => {
+                setProperty(data);
+                console.log(data)
 
-        }
-        )
-    // .then((data) => {
-    //     console.log(data)
-    // })
-}, []);
+            }
+            )
+        // .then((data) => {
+        //     console.log(data)
+        // })
+    }, []);
 
 
-const [selects, setSelects]= useState();
+    const [properties, setProperties] = useState();
+    const [units, setUnits] = useState();
+
 
     return (
         <div>
@@ -119,19 +115,18 @@ const [selects, setSelects]= useState();
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText>
-                                <div>
-                                    {/* <h1>{selects}</h1> */}
-                                    <select value={selects} onChange={e=>setSelects(e.target.value)}>
-                                    {property.map((item) => (
- 
-                                        <option>{item.property_name}</option>
-                                        // <option>Mango</option>
-                                        // <option>Orange</option>
+                             
+                                <p>Select Property</p>
+
+                                    <select className='property-dropdown' value={properties} onChange={e => setProperties(e.target.value)}>
+                                        {property.map((item) => (
+
+                                            <option>{item.property_name}</option>
+
                                         ))}
 
                                     </select>
-                                </div>
-                                <p>Select Property</p>
+                              
 
                                 {/* <Box sx={{ minWidth: 120 }}>
                                     <FormControl fullWidth>
@@ -154,6 +149,16 @@ const [selects, setSelects]= useState();
                                 </Box> */}
 
                                 <p>Select Unit</p>
+
+                                <select className='property-dropdown' value={units} onChange={e => setUnits(e.target.value)}>
+                                        {property.map((item) => (
+
+                                            <option >{item.unit_name}</option>
+
+                                        ))}
+
+                                    </select>
+
                                 {/* <Box sx={{ minWidth: 120 }}>
                                     <FormControl fullWidth>
                                         <InputLabel id="demo-simple-select-label">Unit</InputLabel>
@@ -231,8 +236,8 @@ const [selects, setSelects]= useState();
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell align="right">{item.tenant_name}</TableCell>
-                                    <TableCell align="right">{item.property_name}</TableCell>
-                                    <TableCell align="right">{item.unit_name}</TableCell>
+                                    <TableCell align="right">{item.property_id}</TableCell>
+                                    <TableCell align="right">{item.unit_id}</TableCell>
                                     <TableCell align="right">{item.phone_number}</TableCell>
                                     <TableCell align="right">{item.deposit}</TableCell>
                                     <TableCell align="right">{item.balance}</TableCell>

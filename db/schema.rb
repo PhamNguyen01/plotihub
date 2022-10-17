@@ -19,6 +19,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_16_075853) do
     t.string "category"
     t.string "short_summary"
     t.string "description"
+    t.integer "tenant_id"
+    t.integer "property_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -28,7 +30,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_16_075853) do
     t.string "item"
     t.string "unit_name"
     t.string "status"
-    t.integer "amount_to_pay"
+    t.integer "paid_amount"
+    t.integer "user_id"
+    t.integer "tenant_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -39,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_16_075853) do
     t.integer "water_rate"
     t.integer "electricity_rate"
     t.integer "mpesa_paybill"
+    t.integer "user_id"
   end
 
   create_table "tenants", force: :cascade do |t|
@@ -47,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_16_075853) do
     t.integer "deposit"
     t.integer "balance"
     t.integer "account_number"
+    t.integer "property_id"
   end
 
   create_table "users", force: :cascade do |t|

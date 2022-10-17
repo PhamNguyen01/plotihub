@@ -102,9 +102,10 @@
 }
 
 .payment-reminders-input {
-  width: 55vh;
-  height: 10vh;
-  border-radius: 8px;
+  width: 50vh;
+  height: 5vh;
+  border: 0.5px solid black;
+  border-radius: 3.5px;
 }
 
 .invoice-buttons {
@@ -216,4 +217,10 @@
   padding-right: 20vh;
   margin-top: -22.5vh;
 }
-
+.property-dropdown{
+  width: 50vh;
+  height: 4vh;
+  border-radius: 4px;
+  color: black;
+  background-color: #FFFFFF;
+}

@@ -18,7 +18,7 @@ class PaymentsController < ApplicationController
 
     def update
         payment= Payment.find_by!(id: params[:id])
-        payment.update(paid_amount: params[:paid_amount], tenant_name: params[:tenant_name], date: params[:date], status:[:status],)
+        payment.update(paid_amount: params[:paid_amount], tenant_name: params[:tenant_name], date: params[:date], status: params[:status],)
         render json: payment, status: :accepted
     end
 
@@ -33,7 +33,7 @@ class PaymentsController < ApplicationController
     private
 
     def payment_params
-        params.permit(:tenant_name, :amount_to_pay, :payment_number, :item, :unit_name, :date, :status)
+        params.permit(:tenant_name, :paid_amount, :payment_number, :item, :unit_name, :date, :status)
     end
 
     def not_found_response
