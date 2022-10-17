@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom"
 
 export default function LoginForm({ onLogin }) {
     const [username, setUsername] = useState("");
-    const [password_digest, setPassword] = useState("");
+    const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -21,7 +21,7 @@ export default function LoginForm({ onLogin }) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ username, password_digest }),
+            body: JSON.stringify({ username, password }),
         }).then((r) => {
             setIsLoading(false);
             if (r.ok) {
@@ -47,9 +47,9 @@ export default function LoginForm({ onLogin }) {
                 <label htmlFor="password">Password</label>
                 <input
                     type="password"
-                    id="password_digest"
+                    id="password"
                     autoComplete="current-password"
-                    value={password_digest}
+                    value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <Button className='login-btn' type="submit">
