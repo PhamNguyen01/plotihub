@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import '../App.css'
@@ -36,6 +36,24 @@ export default function BasicButtons() {
     const handleChange = (event) => {
         setAge(event.target.value);
     };
+
+    // const [user, setUser] = useState([]);
+
+
+    // useEffect(() => {
+    //     fetch("http://localhost:3000/me")
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             setUser(data);
+    //             console.log(data)
+
+    //         }
+    //         )
+    //     // .then((data) => {
+    //     //     console.log(data)
+    //     // })
+    // }, []);
+
 
 
     return (

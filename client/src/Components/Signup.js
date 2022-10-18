@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import '../App.css'
+import Button from '@mui/material/Button';
+
 
 export default function SignUp({ onLogin }) {
     const [username, setUsername] = useState("");
@@ -23,7 +26,7 @@ export default function SignUp({ onLogin }) {
     }
   
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='login-form'>
         <label htmlFor="username">Username:</label>
         <input
           type="text"
@@ -45,7 +48,7 @@ export default function SignUp({ onLogin }) {
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
         /> */}
-        <button type="submit">Submit</button>
+        <Button className='login-Btn' type="submit">Submit</Button>
       </form>
     );
   }

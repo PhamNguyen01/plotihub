@@ -3,7 +3,7 @@ class PropertiesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_response
     
     def index
-        render json: Property.all, status: :ok
+        render json: Property.all, include:[:user], status: :ok
     end
 
     def show

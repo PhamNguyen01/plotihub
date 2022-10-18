@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom"
 
 
-
 export default function LoginForm({ onLogin }) {
+  const navigate = useNavigate()
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
@@ -26,11 +26,18 @@ export default function LoginForm({ onLogin }) {
             setIsLoading(false);
             if (r.ok) {
                 r.json().then((user) => onLogin(user));
+                // console.log("Logged in mate!")
+                // alert("Succesfully Logged In")
+                navigate("/dashboard")
+
+
             } else {
                 r.json().then((err) => setErrors(err.errors));
+                // console.log("Errors in mate!")
+                alert("Invalid Username or password")
+
             }
-        });
-        
+        });        
     }
 
 
@@ -53,11 +60,11 @@ export default function LoginForm({ onLogin }) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <Button  className='login-btn' type="submit" >
-                    <Link to="/dashboard">
+                <Button className='login-btn' type="submit" >
+                    {/* <Link to="/dashboard"> */}
                     {isLoading ? "Loading..." : "Login"}
 
-                    </Link>
+                    {/* </Link> */}
                 </Button>
                 {/* {errors.map((err) => (
                     <Error key={err}>{err}</Error>
