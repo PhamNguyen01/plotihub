@@ -1,6 +1,9 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import App from './App'
+import Signup from './Components/Signup'
+import LoginForm from './Components/Login'
+import Login from './Components/LoginForm'
 import Invoices from './Components/Invoices'
 import Payment from './Components/Payment'
 import Expenses from './Components/Expenses'
@@ -13,7 +16,8 @@ function Handler() {
     return (
         <div>
             <Routes>
-                <Route path="/" element={<App />} />
+                <Route path="/" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
                 <Route path="/dashboard" element={<App />} />
                 <Route path="/invoices" element={<Invoices />} />
                 <Route path="/payment" element={<Payment />} />
