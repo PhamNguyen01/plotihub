@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :users
   resources :utilities
   resources :maintenances
-  resources :tenants
+  resources :tenants, only:[:index, :show, :create, :update, :destroy] 
   resources :payments
   resources :properties
 

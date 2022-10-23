@@ -4,7 +4,6 @@ class Property < ApplicationRecord
     has_many :maintenances
 
     validates :property_name, presence: true, uniqueness: true
-    validates :unit_name, presence: true
     validates :number_of_units, presence: true
     validates :city, presence: true
 end

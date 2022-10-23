@@ -12,7 +12,7 @@ class TenantsController < ApplicationController
     end
 
     def create 
-        tenant = Tenant.create!(tenant_params)
+        tenant = Tenant.create(tenant_params)
         render json: tenant, status: :created
     end
 
@@ -33,7 +33,7 @@ class TenantsController < ApplicationController
     private
 
     def tenant_params
-        params.permit(:tenant_name, :phone_number, :deposit, :balance, :account_number)
+        params.permit(:tenant_name, :phone_number, :deposit, :balance, :account_number, :property_id)
     end
 
     def not_found_response

@@ -33,7 +33,7 @@ class PaymentsController < ApplicationController
     private
 
     def payment_params
-        params.permit(:tenant_name, :paid_amount, :payment_number, :item, :unit_name, :date, :status)
+        params.permit(:user_id, :tenant_id, :tenant_name, :paid_amount, :payment_number, :item, :unit_name, :date, :status)
     end
 
     def not_found_response

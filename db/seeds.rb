@@ -17,8 +17,7 @@ Property.create([
     {
         user_id: User.first.id,
         property_name: "Bims Apartments",
-        unit_name: "Block D",
-        number_of_units: 9,
+        number_of_units: 20,
         city: "Nairobi",
         water_rate: 100, 
         electricity_rate: 120,
@@ -27,8 +26,7 @@ Property.create([
     {
         user_id: User.last.id,
         property_name: "Maandamano Apartments",
-        unit_name: "Block C",
-        number_of_units: 9,
+        number_of_units: 10,
         city: "Nairobi",
         water_rate: 100, 
         electricity_rate: 120,
@@ -40,7 +38,7 @@ puts "Seeding tenants..."
 
 Tenant.create([
     {
-        property_id: Property.first.id,
+        property_id: Property.first,
         tenant_name: "Carlton Agesa",
         phone_number: "0114807073",
         deposit: 10500,
@@ -48,7 +46,7 @@ Tenant.create([
         account_number: 233244343
     }, 
     {
-        property_id: Property.last.id,
+        property_id: Property.last,
         tenant_name: "Laureen Akinyi",
         phone_number: "0714807073",
         deposit: 10500,
@@ -62,7 +60,7 @@ puts "Seeding payment..."
 Payment.create([
     {
         user_id: User.first.id,
-        tenant_id: Tenant.first.id,
+        tenant_id: Tenant.first,
         tenant_name: "Carlton Agesa",
         paid_amount: 10500,
         date: 2/11/2022,
@@ -70,7 +68,7 @@ Payment.create([
     },
     {
         user_id: User.last.id,
-        tenant_id: Tenant.last.id,
+        tenant_id: Tenant.last,
         tenant_name: "Carlton Agesa",
         paid_amount: 10500,
         date: 2/11/2022,
@@ -82,8 +80,8 @@ puts "Seeding maintance..."
 
 Maintenance.create([
     {
-        property_id: Property.first.id,
-        tenant_id: Tenant.first.id,
+        property_id: Property.first,
+        tenant_id: Tenant.first,
         status: "Pending",
         category: "Household",
         short_summary: "Kitchen pipe was brocken",
@@ -91,8 +89,8 @@ Maintenance.create([
 
     },
     {
-        property_id: Property.last.id,
-        tenant_id: Tenant.last.id,
+        property_id: Property.last,
+        tenant_id: Tenant.last,
         status: "Completed",
         category: "Security",
         short_summary: "Block D camera not working.",
@@ -100,12 +98,6 @@ Maintenance.create([
         
     }
 ])
-
-
-
-
-
-
 
 puts "Seeding users..."
 

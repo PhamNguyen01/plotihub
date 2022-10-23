@@ -37,7 +37,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_16_075853) do
 
   create_table "properties", force: :cascade do |t|
     t.string "property_name"
-    t.string "unit_name"
     t.integer "number_of_units"
     t.string "city"
     t.integer "water_rate"
