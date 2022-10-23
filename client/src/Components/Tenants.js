@@ -54,7 +54,7 @@ export default function Tenants() {
     };
 
 
-    const [tenant, setTenant] = useState([]);
+    const [tenants, setTenant] = useState([]);
 
 
     useEffect(() => {
@@ -94,6 +94,49 @@ export default function Tenants() {
     const [units, setUnits] = useState();
 
 
+    const [property_id, setProperty_id] = useState("");
+    const [balance, setBalance] = useState("");
+    const [unit_name, setUnit_name] = useState("");
+
+    const [tenant_name, setTenant_name] = useState("");
+    const [phone_number, setPhone_number] = useState("");
+    const [deposit, setDeposit] = useState("");
+    // const [balance, setBalance] = useState("");
+    const [account_number, setAccount_number] = useState("");
+
+
+    // const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const handleChange = (event) => {
+        setProperty_id(event.target.value);
+    }
+
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        fetch("http://localhost:3000/tenants", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                property_id,
+                unit_name,
+                tenant_name,
+                phone_number,
+                deposit,
+                balance,
+                account_number
+
+                //   password_confirmation: passwordConfirmation,
+            }),
+        })
+            .then((r) => r.json())
+        // .then((user) => onLogin(user));
+        console.log("POST MADE")
+
+    }
+
+
     return (
         <div>
             <div className='invoice-left-side'>
@@ -110,83 +153,98 @@ export default function Tenants() {
                         onClose={handleClose}
                         aria-labelledby="responsive-dialog-title"
                     >
-                        <DialogTitle id="responsive-dialog-title">
-                            {"Tenant Form"}
-                        </DialogTitle>
-                        <DialogContent>
-                            <DialogContentText>
-                             
-                                <p>Select Property</p>
+                        <form onSubmit={handleSubmit} >
+                            <DialogTitle id="responsive-dialog-title">
+                                {"Tenant Form"}
+                            </DialogTitle>
+                            <DialogContent>
+                                <DialogContentText>
 
-                                    <select className='property-dropdown' value={properties} onChange={e => setProperties(e.target.value)}>
-                                        {property.map((item) => (
+                                    <p> Property</p>
 
-                                            <option>{item.property_name}</option>
+                                    {/* <input value={property_id}
+                                        onChange={(e) => setProperty_id(e.target.value)}
+                                        className='payment-reminders-input'
+                                        placeholder='Property ID'></input> */}
 
-                                        ))}
-
-                                    </select>
-                              
-
-                                {/* <Box sx={{ minWidth: 120 }}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="demo-simple-select-label">Name</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            value={setSelects} 
-                                            // value={age}
-                                            // label="Age"
+                                    <select className='property-dropdown' 
+                                    // onChange={handleChange}
+                                    onChange={e => setProperty_id(e.target.value)}
+                                    >
+                                        {tenants.map((item) => (
                                             
-                                        >
-                                                                        {property.map((item) => (
-
-                                            <MenuItem onChange={e=>setSelects(e.target.value)} value={selects}>{item.property_name}</MenuItem>
-                                            ))}
-                                        
-                                        </Select>
-                                    </FormControl>
-                                </Box> */}
-
-                                <p>Select Unit</p>
-
-                                <select className='property-dropdown' value={units} onChange={e => setUnits(e.target.value)}>
-                                        {property.map((item) => (
-
-                                            <option >{item.unit_name}</option>
-
+                                            <option value={item.property_id}>{item.property.property_name}</option>
                                         ))}
-
                                     </select>
 
-                                {/* <Box sx={{ minWidth: 120 }}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="demo-simple-select-label">Unit</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            value={age}
-                                            label="Age"
-                                            onChange={handleChange}
-                                        >
-                                            <MenuItem value={10}>Ten</MenuItem>
-                                            <MenuItem value={20}>Twenty</MenuItem>
-                                            <MenuItem value={30}>Thirty</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                </Box> */}
+                                     {/* <select className='property-dropdown' value={property_id} onChange={e => setProperty_id(e.target.value)}>
+                                        {property.map((item) => (
+                                            <option >{item.unit_name}</option>
+                                        ))}
+                                    </select> */}
+
+
+                                    <p>Unit</p>
+                                    <input value={unit_name}
+                                        onChange={(e) => setUnit_name(e.target.value)}
+                                        className='payment-reminders-input'
+                                        placeholder='Unit Name/ Number'></input>
+
+                                    {/* <select className='property-dropdown' value={units} onChange={e => setUnits(e.target.value)}>
+                                        {property.map((item) => (
+                                            <option >{item.unit_name}</option>
+                                        ))}
+                                    </select> */}
+
+                                    <p>Tenant Name</p>
+                                    <input value={tenant_name}
+                                        onChange={(e) => setTenant_name(e.target.value)}
+                                        className='payment-reminders-input'
+                                        placeholder='Tenant Name'></input>
+
+
+                                    <p>Phone Number</p>
+                                    <input
+                                        value={phone_number}
+                                        onChange={(e) => setPhone_number(e.target.value)}
+                                        className='payment-reminders-input'
+                                        placeholder='Phone Number'></input>
+
+
+                                    <p>Deposit</p>
+                                    <input
+                                        value={deposit}
+                                        onChange={(e) => setDeposit(e.target.value)}
+                                        className='payment-reminders-input'
+                                        placeholder='Phone Number'></input>
+
+                                    <p>Balance</p>
+                                    <input
+                                        value={balance}
+                                        onChange={(e) => setBalance(e.target.value)}
+                                        className='payment-reminders-input'
+                                        placeholder='Balance'></input>
 
 
 
-                                <p>First Name</p>  <input className='payment-reminders-input' placeholder='First Name'></input>
-                                <p>Last Name</p>  <input className='payment-reminders-input' placeholder='Last Name'></input>
-                                <p>Phone Number</p>  <input className='payment-reminders-input' placeholder='Phone Number'></input>
-                                <p>Deposit</p>  <input className='payment-reminders-input' placeholder='Phone Number'></input>
-                            </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button variant="outlined" onClick={handleClose} autoFocus>Add Tenant</Button>
-                        </DialogActions>
+                                    <p>Amount Number</p>
+                                    <input
+                                        value={account_number}
+                                        onChange={(e) => setAccount_number(e.target.value)}
+                                        className='payment-reminders-input'
+                                        placeholder='Last Name'></input>
+
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+
+                                <Button type="submit"
+                                    variant="outlined"
+                                    onClick={handleClose}
+                                    autoFocus>Add Tenant</Button>
+
+                            </DialogActions>
+                        </form>
 
                     </Dialog>
                 </div>
@@ -230,9 +288,9 @@ export default function Tenants() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {tenant.map((item) => (
+                            {tenants.map((item) => (
                                 <TableRow
-                                    key={tenant.id}
+                                    key={tenants.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell align="right">{item.tenant_name}</TableCell>
