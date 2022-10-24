@@ -45,23 +45,57 @@ export default function Property() {
     const handleClose = () => {
         setOpen(false);
     };
-///Fetching Properties
-const [property, setProperty] = useState([]);
+    ///Fetching Properties
+    const [property, setProperty] = useState([]);
 
 
-useEffect(() => {
-    fetch("http://localhost:3000/properties")
-        .then((response) => response.json())
-        .then((data) => {
-            setProperty(data);
-            console.log(data)
+    useEffect(() => {
+        fetch("http://localhost:3000/properties")
+            .then((response) => response.json())
+            .then((data) => {
+                setProperty(data);
+                console.log(data)
 
-        }
-        )
-    // .then((data) => {
-    //     console.log(data)
-    // })
-}, []);
+            }
+            )
+        // .then((data) => {
+        //     console.log(data)
+        // })
+    }, []);
+
+
+    const [property_name, setProperty_name] = useState("");
+    const [mpesa_paybill, setMpesa_paybill] = useState("");
+    const [number_of_units, setNumber_of_units] = useState("");
+
+    const [city, setCity] = useState("");
+    const [water_rate, setWater_rate] = useState("");
+    const [electricity_rate, setElectricity_rate] = useState("");
+    const [user_id, setUser_id] = useState([]);
+    function handleSubmit(e) {
+        e.preventDefault();
+        fetch("http://localhost:3000/properties", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                property_name,
+                number_of_units,
+                city,
+                water_rate,
+                electricity_rate,
+                mpesa_paybill,
+                user_id
+
+                //   password_confirmation: passwordConfirmation,
+            }),
+        })
+            .then((r) => r.json())
+        // .then((user) => onLogin(user));
+        console.log("POST MADE")
+
+    }
 
 
     return (
@@ -78,30 +112,63 @@ useEffect(() => {
                         onClose={handleClose}
                         aria-labelledby="responsive-dialog-title"
                     >
-                        <DialogTitle id="responsive-dialog-title">
-                            {"Tenant Form"}
-                        </DialogTitle>
-                        <DialogContent>
-                            <DialogContentText>
-                                <p>Select Tenant</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
-                                <p>Paid Amount</p>  <input className='payment-reminders-input' placeholder='Enter Paid Amount e.g 10000'></input>
-                                <p>Select Tenant</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
-                                <p>Payment Type (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
-                                <p>Description (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input>
-                                {/* <Button variant="outlined">Add PAyment</Button> */}
-                            </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button variant="outlined" onClick={handleClose} autoFocus>Add Payment</Button>
+                        <form onSubmit={handleSubmit} >
+                            <DialogTitle id="responsive-dialog-title">
+                                {"Property Form"}
+                            </DialogTitle>
+                            <DialogContent>
+                                <DialogContentText>
+                                    <p>Property Name</p>
+                                    <input value={property_name}
+                                        onChange={(e) => setProperty_name(e.target.value)}
+                                        className='payment-reminders-input'
+                                        placeholder='Property Name'></input>
 
-                            {/* <Button autoFocus onClick={handleClose}>
-                           Disagree
-                       </Button>
-                       <Button onClick={handleClose} autoFocus>
-                           Agree
-                       </Button> */}
-                        </DialogActions>
+                                    <p>Number of units</p>
+                                    <input
+                                        className='payment-reminders-input'
+                                        value={number_of_units}
+                                        onChange={(e) => setNumber_of_units(e.target.value)}
+                                        placeholder='0'></input>
 
+                                    <p>City</p>
+                                    <input
+                                        className='payment-reminders-input'
+                                        value={city}
+                                        onChange={(e) => setCity(e.target.value)}
+                                        placeholder='City or nearest town...'></input>
+
+                                    <p>Water Rate (optional)</p>
+                                    <input
+                                        className='payment-reminders-input'
+                                        value={water_rate}
+                                        onChange={(e) => setWater_rate(e.target.value)}
+                                        placeholder='(Ksh per unit consumed)'></input>
+
+
+                                    <p>Electricity Rate (optional)</p>
+                                    <input
+                                        className='payment-reminders-input'
+                                        value={electricity_rate}
+                                        onChange={(e) => setElectricity_rate(e.target.value)}
+                                        placeholder='(Ksh per unit consumed)'></input>
+
+                                    <p>Mpesa Paybill</p>
+                                    <input
+                                        className='payment-reminders-input'
+                                        value={mpesa_paybill}
+                                        onChange={(e) => setMpesa_paybill(e.target.value)}
+                                        placeholder='M-pesa Paybill'></input>
+
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button type="submit"
+                                    variant="outlined"
+                                    onClick={handleClose}
+                                    autoFocus>Add Property</Button>
+                            </DialogActions>
+                        </form>
                     </Dialog>
 
                 </div>
@@ -122,7 +189,7 @@ useEffect(() => {
 
                         <p>Total Units</p>
                         <h3>0</h3>
-                   
+
                     </div>
 
                 </div>

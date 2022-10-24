@@ -93,7 +93,6 @@ export default function Tenants() {
     const [properties, setProperties] = useState();
     const [units, setUnits] = useState();
 
-
     const [property_id, setProperty_id] = useState("");
     const [balance, setBalance] = useState("");
     const [unit_name, setUnit_name] = useState("");
@@ -167,17 +166,17 @@ export default function Tenants() {
                                         className='payment-reminders-input'
                                         placeholder='Property ID'></input> */}
 
-                                    <select className='property-dropdown' 
-                                    // onChange={handleChange}
-                                    onChange={e => setProperty_id(e.target.value)}
+                                    <select className='property-dropdown'
+                                        // onChange={handleChange}
+                                        onChange={e => setProperty_id(e.target.value)}
                                     >
-                                        {tenants.map((item) => (
-                                            
-                                            <option value={item.property_id}>{item.property.property_name}</option>
+                                        {property.map((item) => (
+
+                                            <option value={item.property_id}>{item.property_name}</option>
                                         ))}
                                     </select>
 
-                                     {/* <select className='property-dropdown' value={property_id} onChange={e => setProperty_id(e.target.value)}>
+                                    {/* <select className='property-dropdown' value={property_id} onChange={e => setProperty_id(e.target.value)}>
                                         {property.map((item) => (
                                             <option >{item.unit_name}</option>
                                         ))}
@@ -216,7 +215,7 @@ export default function Tenants() {
                                         value={deposit}
                                         onChange={(e) => setDeposit(e.target.value)}
                                         className='payment-reminders-input'
-                                        placeholder='Phone Number'></input>
+                                        placeholder='Deposit'></input>
 
                                     <p>Balance</p>
                                     <input
@@ -227,12 +226,12 @@ export default function Tenants() {
 
 
 
-                                    <p>Amount Number</p>
+                                    <p>Account Number</p>
                                     <input
                                         value={account_number}
                                         onChange={(e) => setAccount_number(e.target.value)}
                                         className='payment-reminders-input'
-                                        placeholder='Last Name'></input>
+                                        placeholder='Account Number'></input>
 
                                 </DialogContentText>
                             </DialogContent>

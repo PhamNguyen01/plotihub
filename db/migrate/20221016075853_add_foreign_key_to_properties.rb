@@ -1,7 +1,6 @@
 class AddForeignKeyToProperties < ActiveRecord::Migration[7.0]
   def change
-    add_column :properties, :user_id, :integer 
-    add_column :tenants, :property_id, :integer
+     add_column :tenants, :property_id, :integer
     add_column :payments, :user_id, :integer
     add_column :payments, :tenant_id, :integer
     add_column :maintenances, :tenant_id, :integer
