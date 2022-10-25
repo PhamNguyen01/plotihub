@@ -2,8 +2,8 @@ puts "Seeding users..."
 
 User.create([
     {
-        username: "Bonan",
-        password: "Bonan1234"
+        username: "admin",
+        password: "123"
     },
     {
         username: "John Commercials",
@@ -15,7 +15,7 @@ puts "Seeding properties..."
 
 Property.create([
     {
-        user_id: User.first.id,
+        # user_id: 1,
         property_name: "Bims Apartments",
         number_of_units: 20,
         city: "Nairobi",
@@ -24,7 +24,7 @@ Property.create([
         mpesa_paybill: 1223439482
     }, 
     {
-        user_id: User.last.id,
+        # user_id: 2,
         property_name: "Maandamano Apartments",
         number_of_units: 10,
         city: "Nairobi",
@@ -38,21 +38,24 @@ puts "Seeding tenants..."
 
 Tenant.create([
     {
-        property_id: Property.first,
+        property_id: 1,
         tenant_name: "Carlton Agesa",
+        unit_name: "1",
         phone_number: "0114807073",
         deposit: 10500,
         balance: 0,
         account_number: 233244343
     }, 
     {
-        property_id: Property.last,
+        property_id: 2,
         tenant_name: "Laureen Akinyi",
+        unit_name: "2",
         phone_number: "0714807073",
         deposit: 10500,
         balance: 0,
         account_number: 233244343
     }
+ 
 ])
 
 puts "Seeding payment..."

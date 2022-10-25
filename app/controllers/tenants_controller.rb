@@ -33,7 +33,7 @@ class TenantsController < ApplicationController
     private
 
     def tenant_params
-        params.permit(:tenant_name, :phone_number, :deposit, :balance, :account_number, :property_id)
+        params.permit(:tenant_name, :unit_name, :phone_number, :deposit, :balance, :account_number, :property_id)
     end
 
     def not_found_response

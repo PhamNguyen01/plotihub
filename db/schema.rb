@@ -47,7 +47,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_16_075853) do
 
   create_table "tenants", force: :cascade do |t|
     t.string "tenant_name"
-    t.integer "phone_number"
+    t.string "phone_number"
+    t.string "unit_name"
     t.integer "deposit"
     t.integer "balance"
     t.integer "account_number"

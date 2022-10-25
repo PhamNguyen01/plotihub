@@ -71,7 +71,7 @@ export default function Property() {
     const [city, setCity] = useState("");
     const [water_rate, setWater_rate] = useState("");
     const [electricity_rate, setElectricity_rate] = useState("");
-    const [user_id, setUser_id] = useState([]);
+    const user_id = 7
     function handleSubmit(e) {
         e.preventDefault();
         fetch("http://localhost:3000/properties", {
