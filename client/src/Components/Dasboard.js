@@ -37,22 +37,22 @@ export default function BasicButtons() {
         setAge(event.target.value);
     };
 
-    // const [user, setUser] = useState([]);
+    const [user, setUser] = useState([]);
 
 
-    // useEffect(() => {
-    //     fetch("http://localhost:3000/me")
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             setUser(data);
-    //             console.log(data)
+    useEffect(() => {
+        fetch("http://localhost:3000/me")
+            .then((response) => response.json())
+            .then((data) => {
+                setUser(data);
+                console.log(data)
 
-    //         }
-    //         )
-    //     // .then((data) => {
-    //     //     console.log(data)
-    //     // })
-    // }, []);
+            }
+            )
+        // .then((data) => {
+        //     console.log(data)
+        // })
+    }, []);
 
 
 

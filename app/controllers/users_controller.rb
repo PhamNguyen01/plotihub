@@ -82,10 +82,10 @@ class UsersController < ApplicationController
 
 
     def login_user
-        user = User.find_by(email: params[:email])
+        user = User.find_by(username: params[:username])
         user_session(user.id)
         if user&.authenticate(params[:password])
-            app_response(status_code: 200, message: "Logged in succesfully", body: user, serializer: UserSerializer)
+            app_response(status_code: 200, message: "Logged in succesfully", body: user)
         else
             app_response(status_code: 401, message: "Invalid user_name  or password")
         end
