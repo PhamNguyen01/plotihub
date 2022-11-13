@@ -33,7 +33,7 @@ class MaintenancesController < ApplicationController
     private
 
     def maintenance_params
-        params.permit(:status, :category, :short_summary, :description)
+        params.permit(:user_id, :status, :category, :short_summary, :description)
     end
 
     def not_found_response
