@@ -3,7 +3,6 @@ import '../App.css'
 import PermanentDrawerLeft from './Drawer';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,8 +10,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
-
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -20,27 +17,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-
-function createData(tenant_name, property_name, unit_name, phone_number, deposit, balance, account_number) {
-    return { tenant_name, property_name, unit_name, phone_number, deposit, balance, account_number };
-}
-
-const rows = [
-    createData('Carl Agesa', 'Magiq Square', 'block D', '07212531733', 5000, 5000, 212123),
-    createData('David Park', 'Magiq Square', 'block D', '07212531733', 5000, 5000, 212123)
-
-];
-
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import Stack from '@mui/material/Stack';
 
 export default function Tenants() {
-
+    const [tenants, setTenant] = useState([]);
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -54,7 +36,6 @@ export default function Tenants() {
     };
 
 
-    const [tenants, setTenant] = useState([]);
 
 
     useEffect(() => {
@@ -89,27 +70,19 @@ export default function Tenants() {
         // })
     }, []);
 
-
-    const [properties, setProperties] = useState();
-    const [units, setUnits] = useState();
-
     const [property_id, setProperty_id] = useState("");
     const [balance, setBalance] = useState("");
     const [unit_name, setUnit_name] = useState("");
-
     const [tenant_name, setTenant_name] = useState("");
     const [phone_number, setPhone_number] = useState("");
     const [deposit, setDeposit] = useState("");
-    // const [balance, setBalance] = useState("");
     const [account_number, setAccount_number] = useState("");
 
-
-    // const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const handleChange = (event) => {
         setProperty_id(event.target.value);
     }
 
-
+    // POST request to tenants table
     function handleSubmit(e) {
         e.preventDefault();
         fetch("http://localhost:3000/tenants", {
@@ -125,8 +98,6 @@ export default function Tenants() {
                 deposit,
                 balance,
                 account_number
-
-                //   password_confirmation: passwordConfirmation,
             }),
         })
             .then((r) => r.json())
@@ -152,6 +123,7 @@ export default function Tenants() {
                         onClose={handleClose}
                         aria-labelledby="responsive-dialog-title"
                     >
+                        {/* Add tenant form */}
                         <form onSubmit={handleSubmit} >
                             <DialogTitle id="responsive-dialog-title">
                                 {"Tenant Form"}
@@ -160,14 +132,7 @@ export default function Tenants() {
                                 <DialogContentText>
 
                                     <p> Property</p>
-
-                                    {/* <input value={property_id}
-                                        onChange={(e) => setProperty_id(e.target.value)}
-                                        className='payment-reminders-input'
-                                        placeholder='Property ID'></input> */}
-
                                     <select className='property-dropdown'
-                                        // onChange={handleChange}
                                         onChange={e => setProperty_id(e.target.value)}
                                     >
                                         {property.map((item) => (
@@ -175,26 +140,11 @@ export default function Tenants() {
                                             <option value={item.property_id}>{item.id}<p>{item.property_name}</p></option>
                                         ))}
                                     </select>
-
-                                    {/* <select className='property-dropdown' value={property_id} onChange={e => setProperty_id(e.target.value)}>
-                                        {property.map((item) => (
-                                            <option >{item.unit_name}</option>
-                                        ))}
-                                    </select> */}
-
-
                                     <p>Unit</p>
                                     <input value={unit_name}
                                         onChange={(e) => setUnit_name(e.target.value)}
                                         className='payment-reminders-input'
                                         placeholder='Unit Name/ Number'></input>
-
-                                    {/* <select className='property-dropdown' value={units} onChange={e => setUnits(e.target.value)}>
-                                        {property.map((item) => (
-                                            <option >{item.unit_name}</option>
-                                        ))}
-                                    </select> */}
-
                                     <p>Tenant Name</p>
                                     <input value={tenant_name}
                                         onChange={(e) => setTenant_name(e.target.value)}
@@ -240,7 +190,8 @@ export default function Tenants() {
                                 <Button type="submit"
                                     variant="outlined"
                                     onClick={handleClose}
-                                    autoFocus>Add Tenant</Button>
+                                    autoFocus>Add Tenant
+                                </Button>
 
                             </DialogActions>
                         </form>
@@ -287,6 +238,7 @@ export default function Tenants() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
+                            {/* Maping tenant data to table */}
                             {tenants.map((item) => (
                                 <TableRow
                                     key={tenants.id}
@@ -299,9 +251,16 @@ export default function Tenants() {
                                     <TableCell align="right">{item.deposit}</TableCell>
                                     <TableCell align="right">{item.balance}</TableCell>
                                     <TableCell align="right">{item.account_number}</TableCell>
-                                    <TableCell align="right"><Button variant='outlined'>Download</Button></TableCell>
-
-
+                                    <TableCell align="right">
+                                        <Stack direction="row" spacing={0.5}>
+                                            <Button variant="outlined" startIcon={<DeleteIcon />}>
+                                                Del
+                                            </Button>
+                                            <Button variant="contained" endIcon={<EditIcon />}>
+                                                Edit
+                                            </Button>
+                                        </Stack>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

@@ -10,14 +10,13 @@ function Login({ onLogin }) {
 
   return (
     <wrapper>
-      {/* <Logo>Reciplease</Logo> */}
       {showLogin ? (
         <>
           <LoginForm onLogin={onLogin} />
           <Divider />
           <p>
             Don't have an account? &nbsp;
-            <Button  onClick={() => setShowLogin(false)}>
+            <Button onClick={() => setShowLogin(false)}>
               Sign Up
             </Button>
           </p>
@@ -28,7 +27,7 @@ function Login({ onLogin }) {
           <Divider />
           <p>
             Already have an account? &nbsp;
-            <Button  onClick={() => setShowLogin(true)}>
+            <Button onClick={() => setShowLogin(true)}>
               Log In
             </Button>
           </p>

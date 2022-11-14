@@ -16,18 +16,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-
-function createData(date, property_name, unit_name, item, previous_reading, current_reading, invoice) {
-    return { date, property_name, unit_name, item, previous_reading, current_reading, invoice };
-}
-
-const rows = [
-    createData('2/11/2022', 'Magiq Square', 'Block D', 'Water', 100, 200, 12123),
-    createData('2/11/2022', 'Magiq Square', 'Block D', 'Water', 100, 200, 12123),
-
-
-];
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import Stack from '@mui/material/Stack';
 
 export default function Utilties() {
 
@@ -43,24 +34,20 @@ export default function Utilties() {
         setOpen(false);
     };
 
-
-        ///Fetching Properties
-const [utility, setUtility] = useState([]);
-
-
-useEffect(() => {
-    fetch("http://localhost:3000/utilities")
-        .then((response) => response.json())
-        .then((data) => {
-            setUtility(data);
-            console.log(data)
-
-        }
-        )
-    // .then((data) => {
-    //     console.log(data)
-    // })
-}, []);
+    //Fetching utilities data
+    const [utility, setUtility] = useState([]);
+    useEffect(() => {
+        fetch("http://localhost:3000/utilities")
+            .then((response) => response.json())
+            .then((data) => {
+                setUtility(data);
+                console.log(data)
+            }
+            )
+        // .then((data) => {
+        //     console.log(data)
+        // })
+    }, []);
 
 
     return (
@@ -71,6 +58,7 @@ useEffect(() => {
 
                     <Button variant="outlined" onClick={handleClickOpen}>Record Utility</Button>
                     <Button variant="outlined"> Bulk Upload Utilies </Button>
+                    {/* Utlity form */}
                     <Dialog
                         fullScreen={fullScreen}
                         open={open}
@@ -78,7 +66,7 @@ useEffect(() => {
                         aria-labelledby="responsive-dialog-title"
                     >
                         <DialogTitle id="responsive-dialog-title">
-                            {"Tenant Form"}
+                            {"Utility Form"}
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText>
@@ -91,7 +79,7 @@ useEffect(() => {
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                            <Button variant="outlined" onClick={handleClose} autoFocus>Add Payment</Button>
+                            <Button variant="outlined" onClick={handleClose} autoFocus>Add Utility</Button>
                         </DialogActions>
 
                     </Dialog>
@@ -124,6 +112,7 @@ useEffect(() => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
+                            {/* Maping Utilities data to table */}
                             {utility.map((item) => (
                                 <TableRow
                                     key={item.id}
@@ -132,17 +121,22 @@ useEffect(() => {
                                     <TableCell component="th" scope="row">
                                         {item.date}
                                     </TableCell>
-                                    {/* <TableCell align="right">{row.tenant_name}</TableCell> */}
                                     <TableCell align="right">{item.property_name}</TableCell>
                                     <TableCell align="right">{item.unit_name}</TableCell>
                                     <TableCell align="right">{item.utility_item}</TableCell>
                                     <TableCell align="right">{item.previous_reading}</TableCell>
                                     <TableCell align="right">{item.current_reading}</TableCell>
                                     <TableCell align="right">{item.invoice}</TableCell>
-                                    <TableCell align="right"><Button variant='outlined'>Download</Button></TableCell>
-
-
-
+                                    <TableCell align="right">
+                                        <Stack direction="row" spacing={0.5}>
+                                            <Button variant="outlined" startIcon={<DeleteIcon />}>
+                                                Del
+                                            </Button>
+                                            <Button variant="contained" endIcon={<EditIcon />}>
+                                                Edit
+                                            </Button>
+                                        </Stack>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

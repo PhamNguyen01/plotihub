@@ -25,7 +25,7 @@ export default function ResponsiveDialog() {
   return (
     <div>
       <Button className='button' variant="outlined" onClick={handleClickOpen}>
-       Send Reminders
+        Send Reminders
       </Button>
       <Dialog
         fullScreen={fullScreen}
@@ -38,7 +38,7 @@ export default function ResponsiveDialog() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-          <input placeholder='Select Property'></input>
+            <input placeholder='Select Property'></input>
           </DialogContentText>
         </DialogContent>
         <DialogActions>

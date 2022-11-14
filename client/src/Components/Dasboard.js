@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useTheme } from '@mui/material/styles';
+import '../App.css'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import '../App.css'
 import ResponsiveDialog from './Modal';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -9,8 +10,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -36,23 +35,22 @@ export default function BasicButtons() {
     const handleChange = (event) => {
         setAge(event.target.value);
     };
+    const [user, setUser] = useState(null);
 
-    const [user, setUser] = useState([]);
-
-
+    //Keeping user logged in
     useEffect(() => {
-        fetch("http://localhost:3000/me")
-            .then((response) => response.json())
-            .then((data) => {
-                setUser(data);
-                console.log(data)
-
+        fetch("http://localhost:3000/me").then((response) => {
+            if (response.ok) {
+                response.json().then((user) => setUser(user));
             }
-            )
-        // .then((data) => {
-        //     console.log(data)
-        // })
+        });
     }, []);
+
+    // if (user) {
+    //   <h2>Welcome, {user.username}!</h2>;
+    // } else {
+    //    <LoginForm onLogin={setUser} />;
+    // }
 
 
 
@@ -104,7 +102,7 @@ export default function BasicButtons() {
 
                 <Box sx={{ minWidth: 120 }}>
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Name</InputLabel>
+                        <InputLabel id="demo-simple-select-label"></InputLabel>
                         <Select className='dropdown'
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"

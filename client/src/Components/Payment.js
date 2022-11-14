@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import ServerRequestDatePicker from './Date';
 import '../App.css'
 import PermanentDrawerLeft from './Drawer';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,7 +11,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -19,20 +18,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import ServerRequestDatePicker from './Date';
-function createData(date, payment_number, tenant_name, item, unit_name, status, amount_to_pay) {
-    return { date, payment_number, tenant_name, item, unit_name, status, amount_to_pay };
-}
-
-const rows = [
-    createData('7/1/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,),
-    createData('7/2/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,),
-    createData('7/3/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,),
-    createData('7/4/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,),
-    createData('7/5/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,),
-    createData('7/6/2022', 12345, 'David Park', 1, 'Magiq Square', 'Paid', 10000,)
-];
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import Stack from '@mui/material/Stack';
 
 export default function Payment() {
     const [open, setOpen] = React.useState(false);
@@ -47,10 +35,8 @@ export default function Payment() {
         setOpen(false);
     };
 
-    ///Fetching Properties
+    ///Fetching payments data
     const [payment, setPayment] = useState([]);
-
-
     useEffect(() => {
         fetch("http://localhost:3000/payments")
             .then((response) => response.json())
@@ -68,15 +54,13 @@ export default function Payment() {
     const [properties, setProperties] = useState();
     const [tenants, setTenants] = useState();
 
-
     return (
-
         <div>
             <div className='payment-left-side'>
+                {/* Left drawer */}
                 <PermanentDrawerLeft />
-
                 <div className='payment-buttons'>
-
+                    {/* Add payment form */}
                     <Button variant="outlined" onClick={handleClickOpen}>
                         Record Payment
                     </Button>
@@ -99,7 +83,7 @@ export default function Payment() {
 
                                     ))}
 
-                                </select> 
+                                </select>
                                 <p>Select Tenant</p>
 
                                 <select className='property-dropdown' value={tenants} onChange={e => setTenants(e.target.value)}>
@@ -112,7 +96,7 @@ export default function Payment() {
                                 </select>
                                 <p>Paid Amount</p>  <input className='payment-reminders-input' placeholder='Enter Paid Amount e.g 10000'></input>
                                 <p>Payment Date</p>  < ServerRequestDatePicker />
-                                <p>Status</p> 
+                                <p>Status</p>
 
                                 <select className='property-dropdown' value={tenants} onChange={e => setTenants(e.target.value)}>
                                     {payment.map((item) => (
@@ -120,27 +104,14 @@ export default function Payment() {
                                         <option>{item.status}</option>
 
                                     ))}
-                                    </select>
-                                {/* <p>Description (optional)</p>  <input className='payment-reminders-input' placeholder='Select Tenant'></input> */}
-                                {/* <Button variant="outlined">Add PAyment</Button> */}
+                                </select>
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
                             <Button variant="outlined" onClick={handleClose} autoFocus>Add Paymentr</Button>
-
-                            {/* <Button autoFocus onClick={handleClose}>
-                                Disagree
-                            </Button>
-                            <Button onClick={handleClose} autoFocus>
-                                Agree
-                            </Button> */}
                         </DialogActions>
                     </Dialog>
-
-
-
                     <Button variant="outlined"> Bulk Upload Payment </Button>
-                    {/* <Button variant="outlined"> Generate Rent payment</Button> */}
                 </div>
 
                 <div className='payment-left-filters'>
@@ -184,6 +155,7 @@ export default function Payment() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
+                            {/* Maping payments data to table */}
                             {payment.map((item) => (
                                 <TableRow
                                     key={item.id}
@@ -198,8 +170,16 @@ export default function Payment() {
                                     <TableCell align="right">{item.unit_name}</TableCell>
                                     <TableCell align="right">{item.status}</TableCell>
                                     <TableCell align="right">{item.paid_amount}</TableCell>
-
-                                    <Button variant='outlined'>Download</Button>
+                                    <TableCell align="right">
+                                        <Stack direction="row" spacing={0.5}>
+                                            <Button variant="outlined" startIcon={<DeleteIcon />}>
+                                                Del
+                                            </Button>
+                                            <Button variant="contained" endIcon={<EditIcon />}>
+                                                Edit
+                                            </Button>
+                                        </Stack>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

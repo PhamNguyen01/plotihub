@@ -3,7 +3,6 @@ import '../App.css'
 import PermanentDrawerLeft from './Drawer';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,8 +10,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
-
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -20,20 +17,18 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-
-function createData(property_name, number_of_units, city, water_rate, electricity_rate, mpesa_paybill) {
-    return { property_name, number_of_units, city, water_rate, electricity_rate, mpesa_paybill };
-}
-
-const rows = [
-    createData('Tassia Hill', '10', 'Nairobi', '300', 'Token', 2323434),
-    createData('Tassia Estate', '10', 'Nairobi', '300', 'Token', 2443434)
-
-];
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import Stack from '@mui/material/Stack';
 
 export default function Property() {
-
+    const user_id = 7
+    const [property_name, setProperty_name] = useState("");
+    const [mpesa_paybill, setMpesa_paybill] = useState("");
+    const [number_of_units, setNumber_of_units] = useState("");
+    const [city, setCity] = useState("");
+    const [water_rate, setWater_rate] = useState("");
+    const [electricity_rate, setElectricity_rate] = useState("");
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -45,10 +40,8 @@ export default function Property() {
     const handleClose = () => {
         setOpen(false);
     };
-    ///Fetching Properties
+    ///Fetching Properties data
     const [property, setProperty] = useState([]);
-
-
     useEffect(() => {
         fetch("http://localhost:3000/properties")
             .then((response) => response.json())
@@ -63,15 +56,7 @@ export default function Property() {
         // })
     }, []);
 
-
-    const [property_name, setProperty_name] = useState("");
-    const [mpesa_paybill, setMpesa_paybill] = useState("");
-    const [number_of_units, setNumber_of_units] = useState("");
-
-    const [city, setCity] = useState("");
-    const [water_rate, setWater_rate] = useState("");
-    const [electricity_rate, setElectricity_rate] = useState("");
-    const user_id = 7
+    // POST request to properties table
     function handleSubmit(e) {
         e.preventDefault();
         fetch("http://localhost:3000/properties", {
@@ -87,16 +72,12 @@ export default function Property() {
                 electricity_rate,
                 mpesa_paybill,
                 user_id
-
-                //   password_confirmation: passwordConfirmation,
             }),
         })
             .then((r) => r.json())
         // .then((user) => onLogin(user));
         console.log("POST MADE")
-
     }
-
 
     return (
         <div>
@@ -104,6 +85,7 @@ export default function Property() {
                 <PermanentDrawerLeft />
                 <div className='payment-buttons'>
 
+                    {/* Add propertiy form */}
                     <Button variant="outlined" onClick={handleClickOpen}>Add Property</Button>
                     <Button variant="outlined"> Add Unit </Button>
                     <Dialog
@@ -208,27 +190,34 @@ export default function Property() {
                                 <TableCell align="right">Water Rate (KSH)</TableCell>
                                 <TableCell align="right">Elictricity Rate (KSH)</TableCell>
                                 <TableCell align="right">MPESA Paybill</TableCell>
-                                <TableCell align="right">Action</TableCell>
+                                {/* <TableCell align="right">Action</TableCell> */}
 
 
                             </TableRow>
                         </TableHead>
                         <TableBody>
+                            {/* Maping property data to table */}
                             {property.map((item) => (
                                 <TableRow
                                     key={item.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    {/* <TableCell component="th" scope="row">
-                                        {row.date}
-                                    </TableCell> */}
                                     <TableCell align="right">{item.property_name}</TableCell>
                                     <TableCell align="right">{item.number_of_units}</TableCell>
                                     <TableCell align="right">{item.city}</TableCell>
                                     <TableCell align="right">{item.water_rate}</TableCell>
                                     <TableCell align="right">{item.electricity_rate}</TableCell>
                                     <TableCell align="right">{item.mpesa_paybill}</TableCell>
-                                    <TableCell align="right"><Button variant='outlined'>Download</Button></TableCell>
+                                    <TableCell align="right">
+                                        <Stack direction="row" spacing={0.5}>
+                                            <Button variant="outlined" startIcon={<DeleteIcon />}>
+                                                Del
+                                            </Button>
+                                            <Button variant="contained" endIcon={<EditIcon />}>
+                                                Edit
+                                            </Button>
+                                        </Stack>
+                                    </TableCell>
 
 
 
