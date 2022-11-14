@@ -1,24 +1,64 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# PlotiHub
 
-Things you may want to cover:
+PlotiHub aims to be the leading open-source property management software in Kenya
 
-* Ruby version
 
-* System dependencies
+## Demo
 
-* Configuration
+[Frontend demo](https://plotihub-v2.vercel.app/)
 
-* Database creation
 
-* Database initialization
+## API Reference
 
-* How to run the test suite
+#### Get all properties
 
-* Services (job queues, cache servers, search engines, etc.)
+```http
+  GET /api/properties
+```
+#### Get properties
 
-* Deployment instructions
+```http
+  GET /api/properties/${id}
+```
+For more endpoints please check documantation.
 
-* ...
+
+
+## Documentation
+
+[API Documentation](https://documenter.getpostman.com/view/14609137/2s8YmEz6Js)
+
+
+## Contributing
+
+Contributions are always welcome!
+
+See `contributing.md` for ways to get started.
+
+Please adhere to this project's `code of conduct`.
+
+
+## Installation
+
+Clone the project using Git
+
+```bash
+  git clone git@github.com:PlotiHub/plotihub.git
+  cd plotihub
+```
+```bash
+  npm install --prefix client
+  npm start --prefix client
+```  
+```bash
+  rails db:create
+  rails db:migrate db:seed
+  rails s
+``` 
+## Tech Stack
+
+**Client:** React, Material UI
+
+**Server:** Ruby on Rails, PostgreSQL
+
