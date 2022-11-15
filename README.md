@@ -14,6 +14,7 @@ The project is built on
 **Client:** 
 - [React](https://reactjs.org/)
 - [Material UI](https://v4.mui.com/)
+
 **Server:**
 - [Ruby on Rails](https://rubyonrails.org/) 
 - [PostgreSQL](https://www.postgresql.org/)
